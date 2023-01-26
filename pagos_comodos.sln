@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32630.194
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pagos_comodos", "pagos_comodos.csproj", "{995CD8E8-EA8A-40A6-B311-CBD2BAAEE94C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{995CD8E8-EA8A-40A6-B311-CBD2BAAEE94C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{995CD8E8-EA8A-40A6-B311-CBD2BAAEE94C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{995CD8E8-EA8A-40A6-B311-CBD2BAAEE94C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{995CD8E8-EA8A-40A6-B311-CBD2BAAEE94C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {856B636E-056E-4EB1-BAC9-9A268E53A47C}
+	EndGlobalSection
+EndGlobal
