@@ -55,12 +55,6 @@
 											<li><asp:LinkButton ID="lbtnCategoria" CommandArgument='<%# Eval("id_categoria") %>' OnClick="lbtnCategoria_Click" runat="server"><%# Eval("nombre") %></asp:LinkButton></li>
                                         </ItemTemplate>
                                      </asp:Repeater>
-							
-							<%--<li><a href="#">Mac <span class="pull-right">(15)</span></a></li>
-							<li><a href="#">iPad <span class="pull-right">(32)</span></a></li>
-							<li><a href="#">Watch <span class="pull-right">(4)</span></a></li>
-							<li><a href="#">TV <span class="pull-right">(6)</span></a></li>
-							<li><a href="#">Accessories <span class="pull-right">(38)</span></a></li>--%>
 						</ul>
 					</div>
 					<!-- END search-sidebar -->
@@ -77,11 +71,11 @@
 								<!-- BEGIN col-6 -->
 								<div class="col-lg-6 text-end">
 									<ul class="sort-list">
-										<li class="text"><i class="fa fa-filter"></i> Sort by:</li>
-										<li class="active"><a href="#">Popular</a></li>
-										<li><a href="#">New Arrival</a></li>
-										<li><a href="#">Discount</a></li>
-										<li><a href="#">Price</a></li>
+										<li class="text"><i class="fa fa-filter"></i> Ordenar por:</li>
+										<li class="active"><a href="#">Populares</a></li>
+										<li><a href="#">Nuevos</a></li>
+										<li><a href="#">Descuentos</a></li>
+										<li><a href="#">Precio</a></li>
 									</ul>
 								</div>
 								<!-- END col-6 -->
@@ -93,6 +87,7 @@
 						<div class="search-item-container">
 							<!-- BEGIN item-row -->
 							<div class="item-row">
+
 								<!-- BEGIN item -->
 								<div class="item item-thumbnail">
 									<a href="product_detail.html" class="item-image">

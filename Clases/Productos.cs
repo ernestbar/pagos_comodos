@@ -7,24 +7,26 @@ using Microsoft.Practices.EnterpriseLibrary.Data;
 
 namespace pagos_comodos.Clases
 {
-    public class Categorias
+    public class Productos
     {
         //Base de datos
         private static Database db1 = DatabaseFactory.CreateDatabase(ConfigurationManager.AppSettings["conn"]);
 
+        public long id_producto { get; set; }
         public long id_categoria { get; set; }
         public string nombre { get; set; }
         public bool activo { get; set; }
         public string url_imagen { get; set; }
 
         #region Constructores
-        public Categorias(int id_categoria_)
+        public Productos(int id_categoria_)
         {
             id_categoria = id_categoria_;
             RecuperarDatos();
         }
-        public Categorias(long id_categoria_, string nombre_, bool activo_, string url_imagen_)
+        public Productos(long id_producto_, long id_categoria_, string nombre_, bool activo_, string url_imagen_)
         {
+            this.id_producto = id_producto_;
             this.id_categoria = id_categoria_;
             this.nombre = nombre_;
             this.activo = activo_;

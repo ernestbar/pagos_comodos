@@ -4113,6 +4113,7 @@
     <Compile Include="Clases\Categorias.cs" />
     <Compile Include="Clases\Menus.cs" />
     <Compile Include="Clases\Menu_hijos.cs" />
+    <Compile Include="Clases\Productos.cs" />
     <Compile Include="home.aspx.cs">
       <DependentUpon>home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
