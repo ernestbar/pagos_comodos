@@ -57,3 +57,6 @@ C:\GITHUB2\pagos_comodos\obj\Debug\pagos_comodos.csproj.CoreCompileInputs.cache
 C:\GITHUB2\pagos_comodos\obj\Debug\pagos_comodos.csproj.CopyComplete
 C:\GITHUB2\pagos_comodos\obj\Debug\pagos_comodos.dll
 C:\GITHUB2\pagos_comodos\obj\Debug\pagos_comodos.pdb
+C:\GITHUB2\pagos_comodos\bin\Microsoft.Practices.EnterpriseLibrary.Common.dll
+C:\GITHUB2\pagos_comodos\bin\Microsoft.Practices.EnterpriseLibrary.Data.dll
+C:\GITHUB2\pagos_comodos\bin\Microsoft.Practices.ObjectBuilder.dll

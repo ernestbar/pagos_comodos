@@ -44,6 +44,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
+      <HintPath>..\lograSA\appLograAdmin\bin\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data">
+      <HintPath>..\lograSA\appLograAdmin\bin\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ObjectBuilder">
+      <HintPath>..\lograSA\appLograAdmin\bin\Microsoft.Practices.ObjectBuilder.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -4093,11 +4102,17 @@
     <Content Include="home.aspx" />
     <Content Include="Imagenes\caracteristicas\product-galaxy-taba.png" />
     <Content Include="Imagenes\categorias\product-galaxy-taba.png" />
+    <Content Include="Imagenes\pagina\logo_mini1.jpg" />
     <Content Include="Imagenes\product-galaxy-taba.png" />
     <Content Include="Imagenes\productos\product-galaxy-taba.png" />
+    <Content Include="productos.aspx" />
+    <Content Include="requisitos.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\Categorias.cs" />
+    <Compile Include="Clases\Menus.cs" />
+    <Compile Include="Clases\Menu_hijos.cs" />
     <Compile Include="home.aspx.cs">
       <DependentUpon>home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4112,7 +4127,21 @@
     <Compile Include="Principal.Master.designer.cs">
       <DependentUpon>Principal.Master</DependentUpon>
     </Compile>
+    <Compile Include="productos.aspx.cs">
+      <DependentUpon>productos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="productos.aspx.designer.cs">
+      <DependentUpon>productos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="requisitos.aspx.cs">
+      <DependentUpon>requisitos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="requisitos.aspx.designer.cs">
+      <DependentUpon>requisitos.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\css\e-commerce\fonts\bootstrap-icons.woff" />

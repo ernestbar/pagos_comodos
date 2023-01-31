@@ -11,53 +11,53 @@ namespace pagos_comodos
 {
 
 
-    public partial class Principal
+    public partial class productos
     {
 
         /// <summary>
-        /// head control.
+        /// txtKeywords control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        protected global::System.Web.UI.WebControls.TextBox txtKeywords;
 
         /// <summary>
-        /// form1 control.
+        /// txtPrecioDesde control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.TextBox txtPrecioDesde;
 
         /// <summary>
-        /// Image1 control.
+        /// txtPrecioHasta control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image1;
+        protected global::System.Web.UI.WebControls.TextBox txtPrecioHasta;
 
         /// <summary>
-        /// lblIdUsuario control.
+        /// btnFiltro control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblIdUsuario;
+        protected global::System.Web.UI.WebControls.Button btnFiltro;
 
         /// <summary>
-        /// odsMenuPadre control.
+        /// odsCategorias control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource odsMenuPadre;
+        protected global::System.Web.UI.WebControls.ObjectDataSource odsCategorias;
 
         /// <summary>
         /// Repeater1 control.
@@ -67,14 +67,5 @@ namespace pagos_comodos
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater Repeater1;
-
-        /// <summary>
-        /// ContentPlaceHolder1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
     }
 }
