@@ -112,11 +112,8 @@
 					<div class="header-nav">
 						<ul class="nav justify-content-end">
 							<li class="divider"></li>
-							<li>
-								<a href="my_account.html">
-									<img src="assets/img/user/user-1.jpg" class="user-img" alt="" /> 
-									<span class="d-none d-xl-inline">Login / Register</span>
-								</a>
+							<li><img src="../assets/img/user/user-1.jpg" class="user-img" alt="" /> 
+								<asp:LinkButton ID="lbtnLogin" class="d-none d-xl-inline" CausesValidation="false" OnClick="lbtnLogin_Click"  runat="server">Ingresar</asp:LinkButton>
 							</li>
 						</ul>
 					</div>

@@ -18,10 +18,10 @@
 						<!-- begin col-4 -->
 						<div class="col-md-4 col-sm-4">
 							<div class="service">
-								<div class="icon text-muted"><i class="fa fa-truck"></i></div>
+								<div class="icon text-muted"><asp:Image ID="Image1" runat="server" ImageUrl="~/Imagenes/requisitos/boleta_pago.png" Width="250px" /> </div>
 								<div class="info">
 									<h4 class="title">Boletas de pago</h4>
-									<p class="desc">Para las personas dependientes, solo necesitan las 3 ultimas papeletas de pagos, si tu no eres dependiente necesitas algun documento que demuestre tus ganancias mensuales.</p>
+									<p class="desc">Para las personas dependientes, 3 ultimas papeletas de pagos, si tu no eres dependiente necesitas algun documento que demuestre tus ganancias mensuales.</p>
 								</div>
 							</div>
 						</div>
@@ -29,7 +29,7 @@
 						<!-- begin col-4 -->
 						<div class="col-md-4 col-sm-4">
 							<div class="service">
-								<div class="icon text-blue"><i class="fa fa-universal-access"></i></div>
+								<div class="icon text-muted"><asp:Image ID="Image2" runat="server" ImageUrl="~/Imagenes/requisitos/documento_identidad.jpg" Width="250px" /> </div>
 								<div class="info">
 									<h4 class="title">Carnet de Identidad</h4>
 									<p class="desc">Fotocopia simple de tu carnet de identidad vigente.</p>
@@ -40,7 +40,7 @@
 						<!-- begin col-4 -->
 						<div class="col-md-4 col-sm-4">
 							<div class="service">
-								<div class="icon text-info"><i class="fa fa-assistive-listening-systems"></i></div>
+								<div class="icon text-muted"><asp:Image ID="Image3" runat="server" ImageUrl="~/Imagenes/requisitos/factura_luz.png" Width="250px" /> </div>
 								<div class="info">
 									<h4 class="title">Factura de luz o agua</h4>
 									<p class="desc">Fotocopia simple de tu factura de luz o agua, para verificar tu domicilio.</p>
@@ -56,7 +56,7 @@
 						<!-- begin col-4 -->
 						<div class="col-md-4 col-sm-4">
 							<div class="service">
-								<div class="icon text-danger"><i class="fab fa-cc-discover"></i></div>
+								<div class="icon text-muted"><asp:Image ID="Image4" runat="server" ImageUrl="~/Imagenes/requisitos/croquis_maps.jpg" Width="250px"  /> </div>
 								<div class="info">
 									<h4 class="title">Croquis de domicilio</h4>
 									<p class="desc">Coordenadas de google maps o fotografia del croquis de tu domicilio.</p>
@@ -67,7 +67,7 @@
 						<!-- begin col-4 -->
 						<div class="col-md-4 col-sm-4">
 							<div class="service">
-								<div class="icon text-dark"><i class="fab fa-connectdevelop"></i></div>
+								<div class="icon text-muted"><asp:Image ID="Image5" runat="server" ImageUrl="~/Imagenes/requisitos/croquis_maps.jpg" Width="250px" /> </div>
 								<div class="info">
 									<h4 class="title">Croquis de tu trabajo</h4>
 									<p class="desc">Coordenadas de google maps o fotografia del croquis de tu lugar de trabajo.</p>
@@ -78,7 +78,7 @@
 						<!-- begin col-4 -->
 						<div class="col-md-4 col-sm-4">
 							<div class="service">
-								<div class="icon text-success"><i class="fa fa-braille"></i></div>
+								<div class="icon text-muted"><asp:Image ID="Image6" runat="server" ImageUrl="~/Imagenes/requisitos/afp_bolivia.png" Width="250px" /> </div>
 								<div class="info">
 									<h4 class="title">Aportes de AFP
 									</h4>

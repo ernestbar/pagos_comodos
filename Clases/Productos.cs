@@ -35,11 +35,12 @@ namespace pagos_comodos.Clases
         #endregion
 
         #region Métodos que NO requieren constructor
-        public static DataTable lista_categorias()
+        public static DataTable lista_producto_categoria(Int32 id_categoria_)
         {
             try
             {
-                DbCommand cmd = db1.GetStoredProcCommand("lista_categorias");
+                DbCommand cmd = db1.GetStoredProcCommand("lista_producto_categoria");
+                db1.AddInParameter(cmd, "id_categoria", DbType.Int32, id_categoria_);
                 cmd.CommandTimeout = int.Parse(ConfigurationManager.AppSettings["CommandTimeout"]);
                 return db1.ExecuteDataSet(cmd).Tables[0];
             }

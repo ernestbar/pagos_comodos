@@ -25,7 +25,7 @@
 				<div class="search-container">
 					<!-- BEGIN search-sidebar -->
 					<div class="search-sidebar">
-						<h4 class="title">Filter By</h4>
+						<h4 class="title">Filtros</h4>
 							<div class="mb-3">
 								<label class="form-label">Palabra Clave</label>
 								<asp:TextBox ID="txtKeywords" class="form-control input-sm" placeholder="Ingrese su palabra clave" runat="server"></asp:TextBox>
@@ -65,7 +65,7 @@
 							<!-- BEGIN row -->
 							<div class="row">
 								<div class="col-lg-6">
-									<h4>We found 65 Items for "Apple Product"</h4>
+									<h4>Entontramos los siguientes productos</h4>
 								</div>
 								<!-- END col-6 -->
 								<!-- BEGIN col-6 -->
@@ -87,55 +87,33 @@
 						<div class="search-item-container">
 							<!-- BEGIN item-row -->
 							<div class="item-row">
+								<asp:Label ID="lblCategoria" runat="server" Text="1" Visible="false"></asp:Label>
+								<asp:ObjectDataSource ID="odsProductos" runat="server" SelectMethod="lista_producto_categoria" TypeName="pagos_comodos.Clases.Productos">
+									<SelectParameters>
+										<asp:ControlParameter ControlID="lblCategoria" Name="id_categoria_" Type="String" />
+									</SelectParameters>
+								</asp:ObjectDataSource>
 
-								<!-- BEGIN item -->
-								<div class="item item-thumbnail">
-									<a href="product_detail.html" class="item-image">
-										<img src="../assets/img/product/product-iphone.png" alt="" />
-										<div class="discount">15% OFF</div>
-									</a>
-									<div class="item-info">
-										<h4 class="item-title">
-											<a href="product_detail.html">iPhone 6s Plus<br />16GB</a>
-										</h4>
-										<p class="item-desc">3D Touch. 12MP photos. 4K video.</p>
-										<div class="item-price">$649.00</div>
-										<div class="item-discount-price">$739.00</div>
-									</div>
-								</div>
-								<!-- END item -->
-								<!-- BEGIN item -->
-								<div class="item item-thumbnail">
-									<a href="product_detail.html" class="item-image">
-										<img src="../assets/img/product/product-apple-tv.png" alt="" />
-										<div class="discount">32% OFF</div>
-									</a>
-									<div class="item-info">
-										<h4 class="item-title">
-											<a href="product.html">Apple TV<br />2016</a>
-										</h4>
-										<p class="item-desc">The future of television is here.</p>
-										<div class="item-price">$599.00</div>
-										<div class="item-discount-price">$799.00</div>
-									</div>
-								</div>
-								<!-- END item -->
-								<!-- BEGIN item -->
-								<div class="item item-thumbnail">
-									<a href="product_detail.html" class="item-image">
-										<img src="../assets/img/product/product-iphone-se.png" alt="" />
-										<div class="discount">20% OFF</div>
-									</a>
-									<div class="item-info">
-										<h4 class="item-title">
-											<a href="product.html">iPhone SE<br />32/64Gb</a>
-										</h4>
-										<p class="item-desc">A big step for small.</p>
-										<div class="item-price">$499.00</div>
-										<div class="item-discount-price">$599.00</div>
-									</div>
-								</div>
-								<!-- END item -->
+								<asp:Repeater ID="Repeater2" DataSourceID="odsProductos" runat="server">
+                                        <ItemTemplate>
+											<!-- BEGIN item -->
+											<div class="item item-thumbnail">
+												<a href="producto_detalle.aspx" class="item-image">
+													<asp:Image ID="Image1" runat="server" ImageUrl='<%# Eval("url_imagen") %>' />
+													<div class="discount">15% OFF</div>
+												</a>
+												<div class="item-info">
+													<h4 class="item-title">
+														<a href="producto_detalle.aspx"><%# Eval("nombre") %></a>
+													</h4>
+													<%--<p class="item-desc">3D Touch. 12MP photos. 4K video.</p>
+													<div class="item-price">$649.00</div>
+													<div class="item-discount-price">$739.00</div>--%>
+												</div>
+											</div>
+											<!-- END item -->
+                                        </ItemTemplate>
+                                     </asp:Repeater>
 							</div>
 							<!-- END item-row -->
 						</div>

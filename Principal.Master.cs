@@ -11,7 +11,21 @@ namespace pagos_comodos
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Page.IsPostBack)
+            {
+                if (Session["id_usuario"] == null)
+                {
+                    lblIdUsuario.Text = "1";
+                    Repeater1.DataBind();
+                }
+                else
+                {
+                    lblIdUsuario.Text = Session["id_usuario"].ToString();
+                    lbtnLogin.Text = Session["usuario"].ToString();
+                    Repeater1.DataBind();
+                }
 
+            }
         }
 
         protected void Repeater1_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -53,6 +67,18 @@ namespace pagos_comodos
             id = obj.CommandArgument.ToString();
             if (id.Contains(".aspx"))
                 Response.Redirect(id);
+        }
+
+        protected void lbtnLogin_Click(object sender, EventArgs e)
+        {
+            if (lbtnLogin.Text == "Ingresar")
+                Response.Redirect("login.aspx");
+            else
+            {
+                Session.Abandon();
+                lbtnLogin.Text = "Ingresar";
+            }
+               
         }
     }
 }
