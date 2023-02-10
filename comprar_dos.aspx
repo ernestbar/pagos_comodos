@@ -67,6 +67,7 @@
 								</label>
 								<div class="col-md-4">
 									<asp:TextBox ID="txtNombres" class="form-control" runat="server"></asp:TextBox>
+									<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtNombres" Font-Bold="True"></asp:RequiredFieldValidator>
 								</div>
 							</div>
 							<div class="mb-2 row">
@@ -75,6 +76,7 @@
 								</label>
 								<div class="col-md-4">
 									<asp:TextBox ID="txtApellidos" class="form-control" runat="server"></asp:TextBox>
+									<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtApellidos" Font-Bold="True"></asp:RequiredFieldValidator>
 								</div>
 							</div>
 							<div class="mb-2 row">
@@ -83,6 +85,7 @@
 								</label>
 								<div class="col-md-4">
 									<asp:TextBox ID="txtCelular" class="form-control" runat="server"></asp:TextBox>
+									<asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtCelular" Font-Bold="True"></asp:RequiredFieldValidator>
 								</div>
 							</div>
 							<div class="mb-2 row">
@@ -91,6 +94,7 @@
 								</label>
 								<div class="col-md-4">
 									<asp:TextBox ID="txtDomicilio" class="form-control" runat="server"></asp:TextBox>
+									<asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtDomicilio" Font-Bold="True"></asp:RequiredFieldValidator>
 								</div>
 							</div>
 							<div class="mb-2 row">
@@ -120,7 +124,7 @@
 							<hr />
 						<!-- BEGIN checkout-footer -->
 						<div class="checkout-footer d-flex">
-							<asp:Button ID="btnAtras" runat="server" Text="ATRAS" OnClick="btnAtras_Click" class="btn btn-white btn-lg me-auto btn-theme w-250px" />
+							<asp:Button ID="btnAtras" runat="server" CausesValidation="false" Text="ATRAS" OnClick="btnAtras_Click" class="btn btn-white btn-lg me-auto btn-theme w-250px" />
 							<asp:Button ID="btnAdelante" runat="server" Text="SOLICITAR" OnClick="btnAdelante_Click" class="btn btn-dark btn-lg btn-theme w-250px" />
 						</div>
 						<!-- END checkout-footer -->

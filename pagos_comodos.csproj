@@ -4126,6 +4126,7 @@
     <Content Include="Imagenes\requisitos\factura_luz.png" />
     <Content Include="login.aspx" />
     <Content Include="productos.aspx" />
+    <Content Include="producto_admin.aspx" />
     <Content Include="producto_detalle.aspx" />
     <Content Include="requisitos.aspx" />
     <Content Include="Web.config" />
@@ -4197,6 +4198,13 @@
     </Compile>
     <Compile Include="productos.aspx.designer.cs">
       <DependentUpon>productos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="producto_admin.aspx.cs">
+      <DependentUpon>producto_admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="producto_admin.aspx.designer.cs">
+      <DependentUpon>producto_admin.aspx</DependentUpon>
     </Compile>
     <Compile Include="producto_detalle.aspx.cs">
       <DependentUpon>producto_detalle.aspx</DependentUpon>
