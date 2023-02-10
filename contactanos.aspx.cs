@@ -17,6 +17,14 @@ namespace pagos_comodos
                 txtNombre.Text = "";
                 txtCelular.Text = "";
                 txtEmail.Text = "";
+                if (Session["id_usuario"] == null)
+                {
+                    lblIdUsuario.Text = "3";
+                }
+                else
+                {
+                    lblIdUsuario.Text = Session["id_usuario"].ToString();
+                }
             }
         }
 

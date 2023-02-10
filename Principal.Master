@@ -76,7 +76,7 @@
 						</a>
 					</div>
 					<!-- END header-logo -->
-					<asp:Label ID="lblIdUsuario" runat="server" Text="1" Visible="false"></asp:Label>
+					<asp:Label ID="lblIdUsuario" runat="server" Text="" Visible="false"></asp:Label>
 					<asp:ObjectDataSource ID="odsMenuPadre" runat="server" SelectMethod="lista_menu_rol_todos" TypeName="pagos_comodos.Clases.Menus">
 						<SelectParameters>
 							<asp:ControlParameter ControlID="lblIdUsuario" Name="id_usuario_" Type="String" />
@@ -97,7 +97,7 @@
 												  <asp:Repeater ID="Repeater2" runat="server">
 													<ItemTemplate>
 														
-															<a class="dropdown-item" href='<%# Eval("url") %>' ><%# Eval("nombre") %></a>
+															<a class="dropdown-item" href='<%# Eval("url") +"?cat=" + Eval("id_categoria") %>' ><%# Eval("nombre") %></a>
 													 </ItemTemplate>
 													</asp:Repeater>
 											</div>
@@ -113,7 +113,7 @@
 						<ul class="nav justify-content-end">
 							<li class="divider"></li>
 							<li><img src="../assets/img/user/user-1.jpg" class="user-img" alt="" /> 
-								<asp:LinkButton ID="lbtnLogin" class="d-none d-xl-inline" CausesValidation="false" OnClick="lbtnLogin_Click"  runat="server">Ingresar</asp:LinkButton>
+								<asp:LinkButton ID="lbtnLogin" class="d-none d-xl-inline" Font-Size="Small" CausesValidation="false" OnClick="lbtnLogin_Click"  runat="server">Ingresar</asp:LinkButton>
 							</li>
 						</ul>
 					</div>
@@ -147,22 +147,18 @@
 						<!-- END col-3 -->
 						<!-- BEGIN col-3 -->
 						<div class="col-lg-3">
-							<h4 class="footer-header">RELATED LINKS</h4>
+							<h4 class="footer-header">LINKS RELACIONADOS</h4>
 							<ul class="fa-ul mb-lg-4 mb-0 p-0">
-								<li><i class="fa fa-fw fa-angle-right"></i> <a href="#">Shopping Help</a></li>
-								<li><i class="fa fa-fw fa-angle-right"></i> <a href="#">Terms of Use</a></li>
-								<li><i class="fa fa-fw fa-angle-right"></i> <a href="#">Contact Us</a></li>
-								<li><i class="fa fa-fw fa-angle-right"></i> <a href="#">Careers</a></li>
-								<li><i class="fa fa-fw fa-angle-right"></i> <a href="#">Payment Method</a></li>
-								<li><i class="fa fa-fw fa-angle-right"></i> <a href="#">Sales & Refund</a></li>
-								<li><i class="fa fa-fw fa-angle-right"></i> <a href="#">Sitemap</a></li>
-								<li><i class="fa fa-fw fa-angle-right"></i> <a href="#">Privacy & Policy</a></li>
+								<li><i class="fa fa-fw fa-angle-right"></i> <a href="#">Requisitos</a></li>
+								<li><i class="fa fa-fw fa-angle-right"></i> <a href="#">Terminos de uso</a></li>
+								<li><i class="fa fa-fw fa-angle-right"></i> <a href="#">Contáctanos</a></li>
+								<li><i class="fa fa-fw fa-angle-right"></i> <a href="#">Privacidad & Politicas</a></li>
 							</ul>
 						</div>
 						<!-- END col-3 -->
 						<!-- BEGIN col-3 -->
 						<div class="col-lg-3">
-							<h4 class="footer-header">LATEST PRODUCT</h4>
+							<h4 class="footer-header">PRODUCTOS NUEVOS</h4>
 							<ul class="list-unstyled list-product mb-lg-4 mb-0 p-0">
 								<li>
 									<div class="image">
@@ -205,7 +201,7 @@
 						<!-- END col-3 -->
 						<!-- BEGIN col-3 -->
 						<div class="col-lg-3">
-							<h4 class="footer-header">OUR CONTACT</h4>
+							<h4 class="footer-header">NUESTOS CONTACT</h4>
 							<address class="mb-lg-4 mb-0">
 								<strong>Twitter, Inc.</strong><br />
 								1355 Market Street, Suite 900<br />

@@ -2,10 +2,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+	<asp:Label ID="lblIdUsuario" runat="server" Text="" Visible="false"></asp:Label>
     <!-- BEGIN #product -->
 		<div id="product" class="section-container pt-20px">
 			<!-- BEGIN container -->
 			<div class="container">
+				<asp:Label ID="lblAviso" runat="server" ForeColor="Blue" Text=""></asp:Label>
 				<!-- BEGIN breadcrumb -->
 				<%--<ul class="breadcrumb">
 					<li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -23,19 +25,26 @@
 							<!-- BEGIN product-thumbnail -->
 							<div class="product-thumbnail">
 								<ul class="product-thumbnail-list">
-									<li class="active"><a href="#" data-click="show-main-image" data-url="../assets/img/product/product-iphone-6s-plus.png"><img src="../assets/img/product/product-iphone-6s-plus.png" alt="" /></a></li>
-									<li><a href="#" data-click="show-main-image" data-url="../assets/img/product/product-iphone-6s-plus-2.jpg"><img src="../assets/img/product/product-iphone-6s-plus-2.jpg" alt="" /></a></li>
-									<li><a href="#" data-click="show-main-image" data-url="../assets/img/product/product-iphone-6s-plus-3.jpg"><img src="../assets/img/product/product-iphone-6s-plus-3.jpg" alt="" /></a></li>
-									<li><a href="#" data-click="show-main-image" data-url="../assets/img/product/product-iphone-6s-plus-4.jpg"><img src="../assets/img/product/product-iphone-6s-plus-4.jpg" alt="" /></a></li>
-									<li><a href="#" data-click="show-main-image" data-url="../assets/img/product/product-iphone-6s-plus-5.jpg"><img src="../assets/img/product/product-iphone-6s-plus-5.jpg" alt="" /></a></li>
-									<li><a href="#" data-click="show-main-image" data-url="../assets/img/product/product-iphone-6s-plus-6.jpg"><img src="../assets/img/product/product-iphone-6s-plus-6.jpg" alt="" /></a></li>
-									<li><a href="#" data-click="show-main-image" data-url="../assets/img/product/product-iphone-6s-plus-7.jpg"><img src="../assets/img/product/product-iphone-6s-plus-7.jpg" alt="" /></a></li>
+									<asp:Label ID="lblIdProducto" runat="server" Visible="false" Text="Label"></asp:Label>
+									<asp:ObjectDataSource ID="odsCaracteristicasImg" runat="server" SelectMethod="lista_caracteristica_producto" TypeName="pagos_comodos.Clases.Caracteristicas">
+										<SelectParameters>
+											<asp:ControlParameter ControlID="lblIdProducto" Name="id_producto_" Type="String" />
+											<asp:Parameter Name="id_tipocaracteristicas_" DefaultValue="2"  />
+										</SelectParameters>
+									</asp:ObjectDataSource>
+									<asp:Repeater ID="RepeaterImg" DataSourceID="odsCaracteristicasImg" runat="server">
+                                        <ItemTemplate>
+											<li><a href="#" data-click="show-main-image" data-url="<%# Eval("img1").ToString().Replace("~","") %>">
+												<asp:Image ID="Image1" ImageUrl='<%# Eval("img1") %>' runat="server" /> </a></li>
+                                        </ItemTemplate>
+									</asp:Repeater>
 								</ul>
 							</div>
 							<!-- END product-thumbnail -->
 							<!-- BEGIN product-main-image -->
 							<div class="product-main-image" data-id="main-image">
-								<img src="../assets/img/product/product-iphone-6s-plus.png" alt="" />
+								<%--<asp:Image ID="Image1" ImageUrl='<%# Eval("img1") %>' runat="server" />--%>
+								<img src='@("/Imagenes/caracteristicas/" + lblIdProducto.Text + "/img/1.jpg")'  alt="" />
 							</div>
 							<!-- END product-main-image -->
 						</div>
@@ -44,8 +53,13 @@
 						<div class="product-info">
 							<!-- BEGIN product-info-header -->
 							<div class="product-info-header">
-								<h1 class="product-title"><span class="badge bg-primary">41% OFF</span> Apple iPhone 6S Plus (16GB) Silver - #89270182 </h1>
-								<ul class="product-category">
+								<asp:Repeater ID="RepeaterTitulo" runat="server">
+                                        <ItemTemplate>
+											<h1 class="product-title"><span class="badge bg-primary"></span> <%# Eval("[3]") %></h1>
+                                        </ItemTemplate>
+									</asp:Repeater>
+								
+								<%--<ul class="product-category">
 									<li><a href="#">iPhone</a></li>
 									<li>/</li>
 									<li><a href="#">mobile phone</a></li>
@@ -53,25 +67,23 @@
 									<li><a href="#">electronics</a></li>
 									<li>/</li>
 									<li><a href="#">lifestyle</a></li>
-								</ul>
+								</ul>--%>
 							</div>
 							<!-- END product-info-header -->
 							<!-- BEGIN product-warranty -->
-							<div class="product-warranty">
+						<%--	<div class="product-warranty">
 								<div class="pull-right">Availability: In stock</div>
 								<div><b>1 Year</b> Local Manufacturer Warranty</div>
-							</div>
+							</div>--%>
 							<!-- END product-warranty -->
 							<!-- BEGIN product-info-list -->
-							<ul class="product-info-list">
-								<li><i class="fa fa-circle"></i> 5.5" Retina HD Display with 3D Touch</li>
-								<li><i class="fa fa-circle"></i> Fingerprint-resistant oleophobic coating</li>
-								<li><i class="fa fa-circle"></i> A9 chip with 64-bit</li>
-								<li><i class="fa fa-circle"></i> Ultrafast 4G LTE Advanced wireless</li>
-								<li><i class="fa fa-circle"></i> New 12-megapixel iSight camera</li>
-								<li><i class="fa fa-circle"></i> 4k video recording</li>
-								<li><i class="fa fa-circle"></i> iOS 9 with Touch ID and Apple Pay</li>
-							</ul>
+                            <ul class="product-info-list">
+                                <asp:Repeater ID="RepeaterCheklist" runat="server">
+                                    <ItemTemplate>
+                                        <li><i class="fa fa-circle"></i><%# Eval("[3]") %></li>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                            </ul>
 							<!-- END product-info-list -->
 							<!-- BEGIN product-social -->
 							<div class="product-social">
@@ -85,15 +97,20 @@
 							</div>
 							<!-- END product-social -->
 							<!-- BEGIN product-purchase-container -->
-							<div class="product-purchase-container">
-								<div class="product-discount">
-									<span class="discount">$869.00</span>
-								</div>
-								<div class="product-price">
-									<div class="price">$749.00</div>
-								</div>
-								<a href="checkout_cart.html" class="btn btn-dark btn-theme btn-lg w-200px">ADD TO CART</a>
-							</div>
+							<asp:Repeater ID="RepeaterPrecio" runat="server">
+                                    <ItemTemplate>
+										<div class="product-purchase-container">
+											<%--<div class="product-discount">
+												<span class="discount">Precio</span>
+											</div>--%>
+											<div class="product-price">
+												<div class="price">Precio en Bs.: <%# Eval("[3]") %></div>
+											</div>
+											<asp:Button ID="btnComprar" class="btn btn-dark btn-theme btn-lg w-200px" OnClick="btnComprar_Click" runat="server" Text="COMPRAR" />
+										</div>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+							
 							<!-- END product-purchase-container -->
 						</div>
 						<!-- END product-info -->
@@ -103,80 +120,38 @@
 					<div class="product-tab">
 						<!-- BEGIN #product-tab -->
 						<ul id="product-tab" class="nav nav-tabs">
-							<li class="nav-item"><a class="nav-link active" href="#product-desc" data-bs-toggle="tab">Product Description</a></li>
-							<li class="nav-item"><a class="nav-link" href="#product-info" data-bs-toggle="tab">Additional Information</a></li>
-							<li class="nav-item"><a class="nav-link" href="#product-reviews" data-bs-toggle="tab">Rating & Reviews (5)</a></li>
+							<li class="nav-item"><a class="nav-link active" href="#product-desc" data-bs-toggle="tab">Descripción del Producto</a></li>
+							<li class="nav-item"><a class="nav-link" href="#product-info" data-bs-toggle="tab">Información Adicional</a></li>
+							<li class="nav-item"><a class="nav-link" href="#product-reviews" data-bs-toggle="tab">Evaluaciones y comentarios</a></li>
 						</ul>
 						<!-- END #product-tab -->
 						<!-- BEGIN #product-tab-content -->
 						<div id="product-tab-content" class="tab-content">
 							<!-- BEGIN #product-desc -->
 							<div class="tab-pane fade active show" id="product-desc">
-								<!-- BEGIN product-desc -->
-								<div class="product-desc">
-									<div class="image">
-										<img src="../assets/img/product/product-main.jpg" alt="" />
-									</div>
-									<div class="desc">
-										<h4>iPhone 6s</h4>
-										<p>
-											The moment you use iPhone 6s, you know you’ve never felt anything like it. With a single press, 3D Touch lets you do more than ever before. Live Photos bring your memories to life in a powerfully vivid way. And that’s just the beginning. Take a deeper look at iPhone 6s, and you’ll find innovation on every level.
-										</p>
-									</div>
-								</div>
-								<!-- END product-desc -->
-								<!-- BEGIN product-desc -->
-								<div class="product-desc right">
-									<div class="image">
-										<img src="../assets/img/product/product-3dtouch.jpg" alt="" />
-									</div>
-									<div class="desc">
-										<h4>3D Touch</h4>
-										<p>
-											The original iPhone introduced the world to Multi-Touch, forever changing the way people experience technology. With 3D Touch, you can do things that were never possible before. It senses how deeply you press the display, letting you do all kinds of essential things more quickly and simply. And it gives you real-time feedback in the form of subtle taps from the all-new Taptic Engine.
-										</p>
-									</div>
-								</div>
-								<!-- END product-desc -->
-								<!-- BEGIN product-desc -->
-								<div class="product-desc">
-									<div class="image">
-										<img src="../assets/img/product/product-cameras.jpg" alt="" />
-									</div>
-									<div class="desc">
-										<h4>Cameras</h4>
-										<p>
-											The 12-megapixel iSight camera captures sharp, detailed photos. It takes brilliant 4K video, up to four times the resolution of 1080p HD video. iPhone 6s also takes selfies worthy of a self-portrait with the new 5-megapixel FaceTime HD camera. And it introduces Live Photos, a new way to relive your favorite memories. It captures the moments just before and after your picture and sets it in motion with just the press of a finger.
-										</p>
-									</div>
-								</div>
-								<!-- END product-desc -->
-								<!-- BEGIN product-desc -->
-								<div class="product-desc right">
-									<div class="image">
-										<img src="../assets/img/product/product-technology.jpg" alt="" />
-									</div>
-									<div class="desc">
-										<h4>Technology</h4>
-										<p>
-											iPhone 6s is powered by the custom-designed 64-bit A9 chip. It delivers performance once found only in desktop computers. You’ll experience up to 70 percent faster CPU performance, and up to 90 percent faster GPU performance for all your favorite graphics-intensive games and apps.
-										</p>
-									</div>
-								</div>
-								<!-- END product-desc -->
-								<!-- BEGIN product-desc -->
-								<div class="product-desc">
-									<div class="image">
-										<img src="../assets/img/product/product-design.jpg" alt="" />
-									</div>
-									<div class="desc">
-										<h4>Design</h4>
-										<p>
-											Innovation isn’t always obvious to the eye, but look a little closer at iPhone 6s and you’ll find it’s been fundamentally improved. The enclosure is made from a new alloy of 7000 Series aluminum — the same grade used in the aerospace industry. The cover glass is the strongest, most durable glass used in any smartphone. And a new rose gold finish joins space gray, silver, and gold.
-										</p>
-									</div>
-								</div>
-								<!-- END product-desc -->
+								<asp:ObjectDataSource ID="odsCaracteristicasCar" runat="server" SelectMethod="lista_caracteristica_producto" TypeName="pagos_comodos.Clases.Caracteristicas">
+										<SelectParameters>
+											<asp:ControlParameter ControlID="lblIdProducto" Name="id_producto_" Type="String" />
+											<asp:Parameter Name="id_tipocaracteristicas_" DefaultValue="1"  />
+										</SelectParameters>
+									</asp:ObjectDataSource>
+									<asp:Repeater ID="Repeater1" DataSourceID="odsCaracteristicasCar" runat="server">
+                                        <ItemTemplate>
+											<!-- BEGIN product-desc -->
+											<div class="product-desc">
+												<div class="image">
+													<img src="<%# Eval("img1").ToString().Replace("~","") %>" alt="" />
+												</div>
+												<div class="desc">
+													<h4><%# Eval("titulo") %></h4>
+													<p>
+														<%# Eval("descripcion") %>
+													</p>
+												</div>
+											</div>
+											<!-- END product-desc -->
+                                        </ItemTemplate>
+									</asp:Repeater>
 							</div>
 							<!-- END #product-desc -->
 							<!-- BEGIN #product-info -->
@@ -187,111 +162,27 @@
 									<table class="table table-product table-striped">
 										<thead>
 											<tr>
-												<th></th>
-												<th>iPhone 6s</th>
-												<th>iPhone 6s Plus</th>
+												<th>Atributos</th>
+												<th>Descripcion</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td class="field">Capacity</td>
-												<td>
-													16GB<br />
-													64GB<br />
-													128GB
-												</td>
-												<td>
-													16GB<br />
-													64GB<br />
-													128GB
-												</td>
-											</tr>
-											<tr>
-												<td class="field">Weight and Dimensions</td>
-												<td>
-													5.44 inches (138.3 mm) x 2.64 inches (67.1 mm) x 0.28 inch (7.1 mm)<br />
-													Weight: 5.04 ounces (143 grams)
-												</td>
-												<td>
-													6.23 inches (158.2 mm) x 3.07 inches (77.9 mm) x 0.29 inch (7.3 mm)<br />
-													Weight: 6.77 ounces (192 grams)
-												</td>
-											</tr>
-											<tr>
-												<td class="field">Display</td>
-												<td>
-													Retina HD display with 3D Touch<br />
-													4.7-inch (diagonal) LED-backlit widescreen<br />
-													1334-by-750-pixel resolution at 326 ppi<br />
-													1400:1 contrast ratio (typical)<br />
-													<br />
-													<b>Both models:</b><br />
-													500 cd/m2 max brightness (typical)<br />
-													Full sRGB standard<br />
-													Dual-domain pixels for wide viewing angles<br />
-													Fingerprint-resistant oleophobic coating on front<br />
-													Support for display of multiple languages and characters simultaneously<br />
-													Display Zoom<br />
-													Reachability
-												</td>
-												<td>
-													Retina HD display with 3D Touch<br />
-													5.5-inch (diagonal) LED-backlit widescreen<br />
-													1920-by-1080-pixel resolution at 401 ppi<br />
-													1300:1 contrast ratio (typical)
-												</td>
-											</tr>
-											<tr>
-												<td class="field">Chip</td>
-												<td colspan="2">
-													A9 chip with 64-bit architecture Embedded M9 motion coprocessor
-												</td>
-											</tr>
-											<tr>
-												<td class="field">iSight Camera</td>
-												<td colspan="2">
-													New 12-megapixel iSight camera with 1.22µ pixels<br />
-													Live Photos<br />
-													Autofocus with Focus Pixels<br />
-													Optical image stabilization (iPhone 6s Plus only)<br />
-													True Tone flash<br />
-													Panorama (up to 63 megapixels)<br />
-													Auto HDR for photos<br />
-													Exposure control<br />
-													Burst mode<br />
-													Timer mode<br />
-													ƒ/2.2 aperture<br />
-													Five-element lens<br />
-													Hybrid IR filter<br />
-													Backside illumination sensor<br />
-													Sapphire crystal lens cover<br />
-													Auto image stabilization<br />
-													Improved local tone mapping<br />
-													Improved noise reduction<br />
-													Face detection<br />
-													Photo geotagging
-												</td>
-											</tr>
-											<tr>
-												<td class="field">Video Recording</td>
-												<td colspan="2">
-													4K video recording (3840 by 2160) at 30 fps<br />
-													1080p HD video recording at 30 fps or 60 fps<br />
-													720p HD video recording at 30 fps<br />
-													Optical image stabilization for video (iPhone 6s Plus only)<br />
-													True Tone flash<br />
-													Slo-mo video support for 1080p at 120 fps and 720p at 240 fps<br />
-													Time-lapse video with stabilization<br />
-													Cinematic video stabilization (1080p and 720p)<br />
-													Continuous autofocus video<br />
-													Improved noise reduction<br />
-													Take 8MP still photos while recording 4K video<br />
-													Playback zoom<br />
-													3x zoom<br />
-													Face detection<br />
-													Video geotagging
-												</td>
-											</tr>
+											<asp:ObjectDataSource ID="odsCaracteristicaAdi" runat="server" SelectMethod="lista_caracteristica_producto" TypeName="pagos_comodos.Clases.Caracteristicas">
+												<SelectParameters>
+													<asp:ControlParameter ControlID="lblIdProducto" Name="id_producto_" Type="String" />
+													<asp:Parameter Name="id_tipocaracteristicas_" DefaultValue="3"  />
+												</SelectParameters>
+											</asp:ObjectDataSource>
+											<asp:Repeater ID="Repeater2" DataSourceID="odsCaracteristicaAdi" runat="server">
+												<ItemTemplate>
+													<tr>
+														<td class="field"><%# Eval("titulo") %></td>
+														<td>
+															<%# Eval("descripcion") %>
+														</td>
+													</tr>
+												</ItemTemplate>
+											</asp:Repeater>
 										</tbody>
 									</table>
 									<!-- END table-product -->
@@ -305,131 +196,28 @@
 								<div class="row row-space-30">
 									<!-- BEGIN col-7 -->
 									<div class="col-md-7 mb-4 mb-lg-0">
-										<!-- BEGIN review -->
-										<div class="review">
-											<div class="review-info">
-												<div class="review-icon"><img src="../assets/img/user/user-1.jpg" alt="" /></div>
-												<div class="review-rate">
-													<ul class="review-star">
-														<li class="active"><i class="fa fa-star"></i></li>
-														<li class="active"><i class="fa fa-star"></i></li>
-														<li class="active"><i class="fa fa-star"></i></li>
-														<li class="active"><i class="fa fa-star"></i></li>
-														<li class=""><i class="far fa-star"></i></li>
-													</ul>
-													(4/5)
-												</div>
-												<div class="review-name">Terry</div>
-												<div class="review-date">24/05/2016 7:40am</div>
-											</div>
-											<div class="review-title">
-												What does “SIM-free” mean?
-											</div>
-											<div class="review-message">
-												Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi in imperdiet augue. Integer non aliquam eros. Cras vehicula nec sapien pretium sagittis. Pellentesque feugiat lectus non malesuada aliquam. Etiam id tortor pretium, dictum leo at, malesuada tortor.
-											</div>
-										</div>
-										<!-- END review -->
-										<!-- BEGIN review -->
-										<div class="review">
-											<div class="review-info">
-												<div class="review-icon"><img src="../assets/img/user/user-2.jpg" alt="" /></div>
-												<div class="review-rate">
-													<ul class="review-star">
-														<li class="active"><i class="fa fa-star"></i></li>
-														<li class="active"><i class="fa fa-star"></i></li>
-														<li class="active"><i class="fa fa-star"></i></li>
-														<li class=""><i class="far fa-star"></i></li>
-														<li class=""><i class="far fa-star"></i></li>
-													</ul>
-													(3/5)
-												</div>
-												<div class="review-name">George</div>
-												<div class="review-date">24/05/2016 8:40am</div>
-											</div>
-											<div class="review-title">
-												When I buy iPhone from apple.com, is it tied to a carrier or does it come “unlocked”?
-											</div>
-											<div class="review-message">
-												In mauris leo, maximus at pellentesque vel, pharetra vel risus. Aenean in semper velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Morbi volutpat mattis neque, at molestie tellus ultricies quis. Ut lobortis odio nec nunc ullamcorper, vitae faucibus augue semper. Sed luctus lobortis nulla ac volutpat. Mauris blandit scelerisque sem.
-											</div>
-										</div>
-										<!-- END review -->
-										<!-- BEGIN review -->
-										<div class="review">
-											<div class="review-info">
-												<div class="review-icon"><img src="../assets/img/user/user-3.jpg" alt="" /></div>
-												<div class="review-rate">
-													<ul class="review-star">
-														<li class="active"><i class="fa fa-star"></i></li>
-														<li class="active"><i class="fa fa-star"></i></li>
-														<li class="active"><i class="fa fa-star"></i></li>
-														<li class="active"><i class="fa fa-star"></i></li>
-														<li class="active"><i class="fa fa-star"></i></li>
-													</ul>
-													(5/5)
-												</div>
-												<div class="review-name">Steve</div>
-												<div class="review-date">23/05/2016 8:40am</div>
-											</div>
-											<div class="review-title">
-												Where is the iPhone Upgrade Program available?
-											</div>
-											<div class="review-message">
-												Duis ut nunc sem. Integer efficitur, justo sit amet feugiat hendrerit, arcu nisl elementum dui, in ultricies erat quam at mauris. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec nec ultrices tellus. Mauris elementum venenatis volutpat.
-											</div>
-										</div>
-										<!-- END review -->
-										<!-- BEGIN review -->
-										<div class="review">
-											<div class="review-info">
-												<div class="review-icon"><img src="../assets/img/user/user-4.jpg" alt="" /></div>
-												<div class="review-rate">
-													<ul class="review-star">
-														<li class="active"><i class="fa fa-star"></i></li>
-														<li class="active"><i class="fa fa-star"></i></li>
-														<li class=""><i class="far fa-star"></i></li>
-														<li class=""><i class="far fa-star"></i></li>
-														<li class=""><i class="far fa-star"></i></li>
-													</ul>
-													(2/5)
-												</div>
-												<div class="review-name">Alfred</div>
-												<div class="review-date">23/05/2016 10.02am</div>
-											</div>
-											<div class="review-title">
-												Can I keep my current service plan if I choose the iPhone Upgrade Program?
-											</div>
-											<div class="review-message">
-												Donec vel fermentum quam. Vivamus scelerisque enim eget tristique auctor. Vivamus tempus, turpis iaculis tempus egestas, leo augue hendrerit tellus, et efficitur neque massa at neque. Aenean efficitur eleifend orci at ornare.
-											</div>
-										</div>
-										<!-- END review -->
-										<!-- BEGIN review -->
-										<div class="review">
-											<div class="review-info">
-												<div class="review-icon"><img src="../assets/img/user/user-5.jpg" alt="" /></div>
-												<div class="review-rate">
-													<ul class="review-star">
-														<li class="active"><i class="fa fa-star"></i></li>
-														<li class="active"><i class="fa fa-star"></i></li>
-														<li class="active"><i class="fa fa-star"></i></li>
-														<li class="active"><i class="fa fa-star"></i></li>
-														<li class="active"><i class="fa fa-star"></i></li>
-													</ul>
-													(5/5)
-												</div>
-												<div class="review-name">Edward</div>
-												<div class="review-date">22/05/2016 9.30pm</div>
-											</div>
-											<div class="review-title">
-												I have an existing carrier contract or installment plan. Can I purchase with the iPhone Upgrade Program
-											</div>
-											<div class="review-message">
-												Aliquam consequat ut turpis non interdum. Integer blandit erat nec sapien sollicitudin, a fermentum dui venenatis. Nullam consequat at enim et aliquet. Cras mattis turpis quis eros volutpat tristique vel a ligula. Proin aliquet leo mi, et euismod metus placerat sit amet.
-											</div>
-										</div>
-										<!-- END review -->
+										<asp:ObjectDataSource ID="odsCaracteristicasRat" runat="server" SelectMethod="lista_caracteristica_producto" TypeName="pagos_comodos.Clases.Caracteristicas">
+												<SelectParameters>
+													<asp:ControlParameter ControlID="lblIdProducto" Name="id_producto_" Type="String" />
+													<asp:Parameter Name="id_tipocaracteristicas_" DefaultValue="4"  />
+												</SelectParameters>
+											</asp:ObjectDataSource>
+											<asp:Repeater ID="Repeater3" DataSourceID="odsCaracteristicasRat" runat="server">
+												<ItemTemplate>
+													<!-- BEGIN review -->
+													<div class="review">
+														<div class="review-info">
+															<div class="review-name"><%# Eval("titulo") %></div>
+														</div>
+														<div class="review-title">
+														</div>
+														<div class="review-message">
+															<%# Eval("descripcion") %>
+														</div>
+													</div>
+													<!-- END review -->
+												</ItemTemplate>
+											</asp:Repeater>
 									</div>
 									<!-- END col-7 -->
 									<!-- BEGIN col-5 -->
@@ -437,40 +225,17 @@
 										<!-- BEGIN review-form -->
 										<div class="review-form">
 											<form action="product_detail.html" name="review_form" method="POST">
-												<h2>Write a review</h2>
+												<h2>Envia tus comentarios</h2>
 												<div class="mb-3">
-													<label for="name" class="form-label">Name <span class="text-danger">*</span></label>
-													<input type="text" class="form-control" id="name" />
+													<label for="name" class="form-label">Nombre <span class="text-danger">*</span></label>
+													<asp:TextBox ID="txtNombre" class="form-control" runat="server"></asp:TextBox>
 												</div>
 												<div class="mb-3">
-													<label for="email" class="form-label">Title <span class="text-danger">*</span></label>
-													<input type="text" class="form-control" id="email" />
+													<label for="review" class="form-label">Comentario <span class="text-danger">*</span></label>
+													<asp:TextBox ID="txtComentario" TextMode="MultiLine" Rows="8" class="form-control" runat="server"></asp:TextBox>
 												</div>
-												<div class="mb-3">
-													<label for="review" class="form-label">Review <span class="text-danger">*</span></label>
-													<textarea class="form-control" rows="8" id="review"></textarea>
-												</div>
-												<div class="mb-3">
-													<label for="email" class="form-label">Rating  <span class="text-danger">*</span></label>
-													<div class="rating rating-selection" data-rating="true" data-target="rating">
-														<i class="far fa-star" data-value="2"></i>
-														<i class="far fa-star" data-value="4"></i>
-														<i class="far fa-star" data-value="6"></i>
-														<i class="far fa-star" data-value="8"></i>
-														<i class="far fa-star" data-value="10"></i>
-														<span class="rating-comment">
-															<span class="rating-comment-tooltip">Click to rate</span>
-														</span>
-													</div>
-													<select name="rating" class="hide">
-														<option value="2">2</option>
-														<option value="4">4</option>
-														<option value="6">6</option>
-														<option value="8">8</option>
-														<option value="10">10</option>
-													</select>
-												</div>
-												<button type="submit" class="btn btn-dark btn-theme btn-lg">Submit Review</button>
+												<asp:Button ID="btnEnviar" class="btn btn-dark btn-theme btn-lg" OnClick="btnEnviar_Click" runat="server" Text="Enviar" />
+												
 											</form>
 										</div>
 										<!-- END review-form --> 
@@ -487,120 +252,39 @@
 				</div>
 				<!-- END product -->
 				<!-- BEGIN similar-product -->
-				<h4 class="mb-15px mt-30px">You Might Also Like</h4>
+			<asp:Label ID="lblIdCategoria" runat="server" Text="" Visible="false"></asp:Label>
+								<asp:ObjectDataSource ID="odsProductos" runat="server" SelectMethod="lista_producto_categoria" TypeName="pagos_comodos.Clases.Productos">
+									<SelectParameters>
+										<asp:ControlParameter ControlID="lblIdCategoria" Name="id_categoria_" Type="String" />
+									</SelectParameters>
+								</asp:ObjectDataSource>
+				<h4 class="mb-15px mt-30px">También podría interesarte</h4>
 				<div class="row gx-2">
 					<div class="col-lg-2 col-md-4">
-						<!-- BEGIN item -->
-						<div class="item item-thumbnail">
-							<a href="product_detail.html" class="item-image">
-								<img src="../assets/img/product/product-iphone.png" alt="">
-								<div class="discount">15% OFF</div>
-							</a>
-							<div class="item-info">
-								<h4 class="item-title">
-									<a href="product_detail.html">iPhone 6s Plus<br>16GB</a>
-								</h4>
-								<p class="item-desc">3D Touch. 12MP photos. 4K video.</p>
-								<div class="item-price">$649.00</div>
-								<div class="item-discount-price">$739.00</div>
-							</div>
-						</div>
-						<!-- END item -->
+						<asp:Repeater ID="Repeater4" DataSourceID="odsProductos" runat="server">
+							<ItemTemplate>
+								<!-- BEGIN item -->
+								<div class="item item-thumbnail">
+									<a href="producto_detalle.aspx?ID=<%# Eval("id_producto") + "&cat=" + Eval("id_categoria") %>" class="item-image">
+										<asp:Image ID="Image1" runat="server" ImageUrl='<%# Eval("url_imagen") %>' />
+										<%--<div class="discount">15% OFF</div>--%>
+									</a>
+									<div class="item-info">
+										<h4 class="item-title">
+											<a href="producto_detalle.aspx?ID=<%# Eval("id_producto") %>"><%# Eval("nombre") %></a>
+										</h4>
+										<p class="item-desc">Precio en Bs.</p>
+										<div class="item-price"><%# Eval("precio") %></div>
+									</div>
+								</div>
+								<!-- END item -->
+							</ItemTemplate>
+						</asp:Repeater>
+						
 					</div>
-					<div class="col-lg-2 col-md-4">
-						<!-- BEGIN item -->
-						<div class="item item-thumbnail">
-							<a href="product_detail.html" class="item-image">
-								<img src="../assets/img/product/product-samsung-note5.png" alt="">
-								<div class="discount">32% OFF</div>
-							</a>
-							<div class="item-info">
-								<h4 class="item-title">
-									<a href="product.html">Samsung Galaxy Note 5<br>Black</a>
-								</h4>
-								<p class="item-desc">Super. Computer. Now in two sizes.</p>
-								<div class="item-price">$599.00</div>
-								<div class="item-discount-price">$799.00</div>
-							</div>
-						</div>
-						<!-- END item -->
-					</div>
-					<div class="col-lg-2 col-md-4">
-						<!-- BEGIN item -->
-						<div class="item item-thumbnail">
-							<a href="product_detail.html" class="item-image">
-								<img src="../assets/img/product/product-iphone-se.png" alt="">
-								<div class="discount">20% OFF</div>
-							</a>
-							<div class="item-info">
-								<h4 class="item-title">
-									<a href="product.html">iPhone SE<br>32/64Gb</a>
-								</h4>
-								<p class="item-desc">A big step for small.</p>
-								<div class="item-price">$499.00</div>
-								<div class="item-discount-price">$599.00</div>
-							</div>
-						</div>
-						<!-- END item -->
-					</div>
-					<div class="col-lg-2 col-md-4">
-						<!-- BEGIN item -->
-						<div class="item item-thumbnail">
-							<a href="product_detail.html" class="item-image">
-								<img src="../assets/img/product/product-zenfone2.png" alt="">
-								<div class="discount">15% OFF</div>
-							</a>
-							<div class="item-info">
-								<h4 class="item-title">
-									<a href="product_detail.html">Assus ZenFone 2<br>‏(ZE550ML)</a>
-								</h4>
-								<p class="item-desc">See What Others Can’t See</p>
-								<div class="item-price">$399.00</div>
-								<div class="item-discount-price">$453.00</div>
-							</div>
-						</div>
-						<!-- END item -->
-					</div>
-					<div class="col-lg-2 col-md-4">
-						<!-- BEGIN item -->
-						<div class="item item-thumbnail">
-							<a href="product_detail.html" class="item-image">
-								<img src="../assets/img/product/product-xperia-z.png" alt="">
-								<div class="discount">32% OFF</div>
-							</a>
-							<div class="item-info">
-								<h4 class="item-title">
-									<a href="product.html">Sony Xperia Z<br>Black Color</a>
-								</h4>
-								<p class="item-desc">For unexpectedly beautiful moments</p>
-								<div class="item-price">$599.00</div>
-								<div class="item-discount-price">$799.00</div>
-							</div>
-						</div>
-						<!-- END item -->
-					</div>
-					<div class="col-lg-2 col-md-4">
-						<!-- BEGIN item -->
-						<div class="item item-thumbnail">
-							<a href="product_detail.html" class="item-image">
-								<img src="../assets/img/product/product-lumia-532.png" alt="">
-								<div class="discount">20% OFF</div>
-							</a>
-							<div class="item-info">
-								<h4 class="item-title">
-									<a href="product.html">Microsoft Lumia 531<br>Smartphone Orange</a>
-								</h4>
-								<p class="item-desc">1 Year Local Manufacturer Warranty</p>
-								<div class="item-price">$99.00</div>
-								<div class="item-discount-price">$199.00</div>
-							</div>
-						</div>
-						<!-- END item -->
-					</div>
+					
 				</div>
 				<!-- END similar-product -->
 			</div>
 			<!-- END container -->
-		</div>
-		<!-- END #product -->
 </asp:Content>

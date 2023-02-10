@@ -4099,6 +4099,9 @@
     <Content Include="assets\plugins\summernote\dist\summernote.js" />
     <Content Include="assets\plugins\summernote\dist\summernote.min.css" />
     <Content Include="assets\plugins\summernote\dist\summernote.min.js" />
+    <Content Include="comprar_dos.aspx" />
+    <Content Include="comprar_tres.aspx" />
+    <Content Include="comprar_uno.aspx" />
     <Content Include="contactanos.aspx" />
     <Content Include="home.aspx" />
     <Content Include="Imagenes\caracteristicas\1\control1.jpg" />
@@ -4107,6 +4110,13 @@
     <Content Include="Imagenes\categorias\product-galaxy-taba.png" />
     <Content Include="Imagenes\pagina\logo_mini1.jpg" />
     <Content Include="Imagenes\product-galaxy-taba.png" />
+    <Content Include="Imagenes\caracteristicas\1\car\control1.jpg" />
+    <Content Include="Imagenes\caracteristicas\1\car\pantalla1.jpg" />
+    <Content Include="Imagenes\caracteristicas\1\img\1.jpg" />
+    <Content Include="Imagenes\caracteristicas\1\img\2.jpg" />
+    <Content Include="Imagenes\caracteristicas\1\img\3.jpg" />
+    <Content Include="Imagenes\caracteristicas\1\img\4.jpg" />
+    <Content Include="Imagenes\caracteristicas\1\img\5.jpg" />
     <Content Include="Imagenes\productos\1\imagen1.jpg" />
     <Content Include="Imagenes\productos\product-galaxy-taba.png" />
     <Content Include="Imagenes\requisitos\afp_bolivia.png" />
@@ -4124,12 +4134,35 @@
     <Compile Include="captcha\Captcha.ashx.cs">
       <DependentUpon>Captcha.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Clases\Caracteristicas.cs" />
     <Compile Include="Clases\Categorias.cs" />
     <Compile Include="Clases\enviar_correo.cs" />
     <Compile Include="Clases\Menus.cs" />
     <Compile Include="Clases\Menu_hijos.cs" />
     <Compile Include="Clases\Productos.cs" />
+    <Compile Include="Clases\Solicitud.cs" />
     <Compile Include="Clases\Usuarios.cs" />
+    <Compile Include="comprar_dos.aspx.cs">
+      <DependentUpon>comprar_dos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="comprar_dos.aspx.designer.cs">
+      <DependentUpon>comprar_dos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="comprar_tres.aspx.cs">
+      <DependentUpon>comprar_tres.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="comprar_tres.aspx.designer.cs">
+      <DependentUpon>comprar_tres.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="comprar_uno.aspx.cs">
+      <DependentUpon>comprar_uno.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="comprar_uno.aspx.designer.cs">
+      <DependentUpon>comprar_uno.aspx</DependentUpon>
+    </Compile>
     <Compile Include="contactanos.aspx.cs">
       <DependentUpon>contactanos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -2,6 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+	<asp:Label ID="lblIdUsuario" runat="server" Text="" Visible="false"></asp:Label>
     <!-- BEGIN #page-header -->
 		<div id="page-header" class="section-container page-header-container bg-dark">
 			<!-- BEGIN page-header-cover -->
@@ -21,6 +22,7 @@
 		<div id="search-results" class="section-container">
 			<!-- BEGIN container -->
 			<div class="container">
+				<asp:Label ID="lblAviso" runat="server" ForeColor="Blue" Text=""></asp:Label>
 				<!-- BEGIN search-container -->
 				<div class="search-container">
 					<!-- BEGIN search-sidebar -->
@@ -87,10 +89,10 @@
 						<div class="search-item-container">
 							<!-- BEGIN item-row -->
 							<div class="item-row">
-								<asp:Label ID="lblCategoria" runat="server" Text="1" Visible="false"></asp:Label>
+								<asp:Label ID="lblIdCategoria" runat="server" Text="" Visible="false"></asp:Label>
 								<asp:ObjectDataSource ID="odsProductos" runat="server" SelectMethod="lista_producto_categoria" TypeName="pagos_comodos.Clases.Productos">
 									<SelectParameters>
-										<asp:ControlParameter ControlID="lblCategoria" Name="id_categoria_" Type="String" />
+										<asp:ControlParameter ControlID="lblIdCategoria" Name="id_categoria_" Type="String" />
 									</SelectParameters>
 								</asp:ObjectDataSource>
 
@@ -98,17 +100,16 @@
                                         <ItemTemplate>
 											<!-- BEGIN item -->
 											<div class="item item-thumbnail">
-												<a href="producto_detalle.aspx" class="item-image">
+												<a href="producto_detalle.aspx?ID=<%# Eval("id_producto") + "&cat=" + Eval("id_categoria") %>" class="item-image">
 													<asp:Image ID="Image1" runat="server" ImageUrl='<%# Eval("url_imagen") %>' />
-													<div class="discount">15% OFF</div>
+													<%--<div class="discount">15% OFF</div>--%>
 												</a>
 												<div class="item-info">
 													<h4 class="item-title">
-														<a href="producto_detalle.aspx"><%# Eval("nombre") %></a>
+														<a href="producto_detalle.aspx?ID=<%# Eval("id_producto") %>"><%# Eval("nombre") %></a>
 													</h4>
-													<%--<p class="item-desc">3D Touch. 12MP photos. 4K video.</p>
-													<div class="item-price">$649.00</div>
-													<div class="item-discount-price">$739.00</div>--%>
+													<p class="item-desc">Precio en Bs.</p>
+													<div class="item-price"><%# Eval("precio") %></div>
 												</div>
 											</div>
 											<!-- END item -->

@@ -129,7 +129,11 @@ namespace pagos_comodos.Clases
                 id_usuario = int.Parse(db1.GetParameterValue(cmd, "idUsuario").ToString());
 
             }
-            catch { }
+            catch (Exception ex)
+            {
+                mensaje = ex.ToString();
+                id_usuario = 0;
+            }
         }
 
 

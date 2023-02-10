@@ -2,10 +2,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+	<asp:Label ID="lblIdUsuario" runat="server" Text="" Visible="false"></asp:Label>
     <!-- BEGIN #about-us-content -->
 		<div id="about-us-content" class="section-container bg-white">
 			<!-- BEGIN container -->
 			<div class="container">
+				<asp:Label ID="lblAviso" runat="server" ForeColor="Blue" Text=""></asp:Label>
 				<!-- BEGIN about-us-content -->
 				<div class="about-us-content">
 					<h2 class="title text-center">Que necesitas para tus minicuotas?</h2>

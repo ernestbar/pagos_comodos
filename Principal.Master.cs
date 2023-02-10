@@ -15,7 +15,7 @@ namespace pagos_comodos
             {
                 if (Session["id_usuario"] == null)
                 {
-                    lblIdUsuario.Text = "1";
+                    lblIdUsuario.Text = "3";
                     Repeater1.DataBind();
                 }
                 else

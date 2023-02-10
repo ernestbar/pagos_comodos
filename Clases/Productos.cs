@@ -17,11 +17,12 @@ namespace pagos_comodos.Clases
         public string nombre { get; set; }
         public bool activo { get; set; }
         public string url_imagen { get; set; }
+        public string precio { get; set; }
 
         #region Constructores
-        public Productos(int id_categoria_)
+        public Productos(long id_producto_)
         {
-            id_categoria = id_categoria_;
+            id_producto = id_producto_;
             RecuperarDatos();
         }
         public Productos(long id_producto_, long id_categoria_, string nombre_, bool activo_, string url_imagen_)
@@ -63,27 +64,24 @@ namespace pagos_comodos.Clases
         {
             try
             {
-                //DbCommand cmd = db1.GetStoredProcCommand("PR_SEG_GET_MENUS_IND");
-                //db1.AddInParameter(cmd, "PV_COD_MENU", DbType.String, _PB_COD_MENU);
-                //db1.ExecuteNonQuery(cmd);
-                //DataTable dt = new DataTable();
-                //dt = db1.ExecuteDataSet(cmd).Tables[0];
-                //if (dt.Rows.Count > 0)
-                //{
-                //    foreach (DataRow dr in dt.Rows)
-                //    {
-                //        if (string.IsNullOrEmpty(dr["COD_MENU_PADRE"].ToString()))
-                //        { _PB_COD_MENU_PADRE = ""; }
-                //        else
-                //        { _PB_COD_MENU_PADRE = (string)dr["COD_MENU_PADRE"]; }
-                //        _PV_DESCRIPCIONMEN = (string)dr["DESCRIPCION"];
-                //        _PV_DETALLE = (string)dr["DETALLE"];
-                //    }
-
-                //}
-
+                DbCommand cmd = db1.GetStoredProcCommand("producto_recuperar_datos");
+                db1.AddInParameter(cmd, "id_producto", DbType.Int64, id_producto);
+                db1.AddOutParameter(cmd, "id_categoria", DbType.Int32, 250);
+                db1.AddOutParameter(cmd, "nombre", DbType.String, 250);
+                db1.AddOutParameter(cmd, "activo", DbType.Boolean, 1);
+                db1.AddOutParameter(cmd, "url_imagen", DbType.String, 250);
+                db1.AddOutParameter(cmd, "precio", DbType.String, 250);
+                db1.ExecuteNonQuery(cmd);
+                id_categoria = (Int32)db1.GetParameterValue(cmd, "id_categoria");
+                nombre = (string)db1.GetParameterValue(cmd, "nombre");
+                activo = (bool)db1.GetParameterValue(cmd, "activo");
+                url_imagen = (string)db1.GetParameterValue(cmd, "url_imagen");
+                precio = (string)db1.GetParameterValue(cmd, "precio");
             }
-            catch { }
+            catch (Exception ex)
+            {
+                
+            }
         }
 
 

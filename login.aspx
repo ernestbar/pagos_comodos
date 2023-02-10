@@ -6,7 +6,7 @@
 		<div class="section-container" id="checkout-info">
 			<!-- BEGIN container -->
 			<div class="container">
-				<asp:Label ID="lblAviso" runat="server" Text=""></asp:Label>
+				<asp:Label ID="lblAviso" runat="server" ForeColor="Blue" Text=""></asp:Label>
 				<asp:MultiView ID="MultiView1" runat="server">
 					<asp:View ID="View1" runat="server">
 						<!-- BEGIN checkout -->

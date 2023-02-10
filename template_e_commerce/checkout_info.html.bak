@@ -363,7 +363,7 @@
 						</div>
 						<!-- END checkout-header -->
 						<!-- BEGIN checkout-body -->
-					
+						<div class="checkout-body">
 							<div class="mb-2 row">
 								<label class="col-form-label col-md-4 text-lg-end">
 								First Name <span class="text-danger">*</span>
@@ -439,8 +439,15 @@
 								</div>
 							</div>
 							<hr />
-							
-						
+							<div class="mb-5px"><b>Shipping Policy</b></div>
+							<ul class="checkout-info-list">
+								<li>Signature may be required for delivery</li>
+								<li>We do not ship to P.O. boxes</li>
+								<li>Delivery estimates below include item preparation and shipping time</li>
+								<li>We do not ship directly to APO/FPO addresses.</li>
+							</ul>
+						</div>
+						<!-- END checkout-body -->
 						<!-- BEGIN checkout-footer -->
 						<div class="checkout-footer d-flex">
 							<a href="checkout_cart.html" class="btn btn-white btn-theme me-auto">BACK</a>
