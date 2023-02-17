@@ -18,6 +18,9 @@ namespace pagos_comodos.Clases
         public bool activo { get; set; }
         public string url_imagen { get; set; }
         public string precio { get; set; }
+        public string mensaje { get; set; }
+        public string tipo_operacion { get; set; }
+        public long id_usuario { get; set; }
 
         #region Constructores
         public Productos(long id_producto_)
@@ -25,13 +28,15 @@ namespace pagos_comodos.Clases
             id_producto = id_producto_;
             RecuperarDatos();
         }
-        public Productos(long id_producto_, long id_categoria_, string nombre_, bool activo_, string url_imagen_)
+        public Productos(string tipo_operacion_, long id_producto_, long id_categoria_, string nombre_, bool activo_, string url_imagen_,long id_usuario_)
         {
             this.id_producto = id_producto_;
             this.id_categoria = id_categoria_;
             this.nombre = nombre_;
             this.activo = activo_;
             this.url_imagen = url_imagen_;
+            this.tipo_operacion = tipo_operacion_;
+            this.id_usuario = id_usuario_;
         }
         #endregion
 
@@ -54,7 +59,22 @@ namespace pagos_comodos.Clases
 
         }
 
+        public static DataTable producto_lista_admin()
+        {
+            try
+            {
+                DbCommand cmd = db1.GetStoredProcCommand("producto_lista_admin");
+                cmd.CommandTimeout = int.Parse(ConfigurationManager.AppSettings["CommandTimeout"]);
+                return db1.ExecuteDataSet(cmd).Tables[0];
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
+                DataTable dt = new DataTable();
+                return dt;
+            }
 
+        }
 
 
         #endregion
@@ -86,48 +106,30 @@ namespace pagos_comodos.Clases
 
 
 
-        public string ABM()
+        public void ABM()
         {
-            string resultado = "";
             try
             {
                 // verificar_vacios();
-                //DbCommand cmd = db1.GetStoredProcCommand("PR_SEG_ABM_MENUS");
-                //db1.AddInParameter(cmd, "PV_TIPO_OPERACION", DbType.String, _PV_TIPO_OPERACION);
-                //if (_PB_COD_MENU == "")
-                //    db1.AddInParameter(cmd, "PB_COD_MENU", DbType.Int64, null);
-                //else
-                //    db1.AddInParameter(cmd, "PB_COD_MENU", DbType.Int64, _PB_COD_MENU);
-                //if (_PB_COD_MENU_PADRE == "")
-                //    db1.AddInParameter(cmd, "PB_COD_MENU_PADRE", DbType.Int64, null);
-                //else
-                //    db1.AddInParameter(cmd, "PB_COD_MENU_PADRE", DbType.Int64, _PB_COD_MENU_PADRE);
+                DbCommand cmd = db1.GetStoredProcCommand("producto_abm");
+                db1.AddInParameter(cmd, "tipo_operacion", DbType.String, tipo_operacion);
+                db1.AddInParameter(cmd, "id_producto", DbType.Int64, id_producto);
+                db1.AddInParameter(cmd, "id_categoria", DbType.Int64, id_categoria);
+                db1.AddInParameter(cmd, "url_imagen", DbType.String, url_imagen);
+                db1.AddInParameter(cmd, "activo", DbType.Boolean, activo);
+                db1.AddInParameter(cmd, "nombre", DbType.String, nombre);
+                db1.AddInParameter(cmd, "id_usuario", DbType.Int64, id_usuario);
+                db1.AddOutParameter(cmd, "mensaje", DbType.String, 30);
+                db1.AddOutParameter(cmd, "idProducto", DbType.String, 250);
+                db1.ExecuteNonQuery(cmd);
 
-                //db1.AddInParameter(cmd, "PV_DESCRIPCIONMEN", DbType.String, _PV_DESCRIPCIONMEN);
-                //db1.AddInParameter(cmd, "PV_DETALLE", DbType.String, _PV_DETALLE);
-                //db1.AddInParameter(cmd, "PV_SISTEMAS", DbType.String, _PV_SISTEMAS);
-                //db1.AddInParameter(cmd, "PV_USUARIO", DbType.String, _PV_USUARIO);
-                //db1.AddOutParameter(cmd, "PV_ESTADOPR", DbType.String, 30);
-                //db1.AddOutParameter(cmd, "PV_DESCRIPCIONPR", DbType.String, 250);
-                //db1.AddOutParameter(cmd, "PV_ERROR", DbType.String, 250);
-                //db1.ExecuteNonQuery(cmd);
-                ////if (String.IsNullOrEmpty(db1.GetParameterValue(cmd, "PV_USER").ToString()))
-                ////    PV_USUARIO = "";
-                ////else
-                ////    PV_USUARIO = (string)db1.GetParameterValue(cmd, "PV_USER");
-                //PV_ERROR = (string)db1.GetParameterValue(cmd, "PV_ESTADOPR");
-                //PV_ESTADOPR = (string)db1.GetParameterValue(cmd, "PV_ESTADOPR");
-                //PV_DESCRIPCIONPR = (string)db1.GetParameterValue(cmd, "PV_DESCRIPCIONPR");
-                ////_id_cliente = (int)db1.GetParameterValue(cmd, "@PV_DESCRIPCIONPR");
-                ////_error = (string)db1.GetParameterValue(cmd, "error");
-                resultado = "";
-                return resultado;
+                mensaje = (string)db1.GetParameterValue(cmd, "mensaje");
+                id_producto = Int64.Parse(db1.GetParameterValue(cmd, "idProducto").ToString());
             }
             catch (Exception ex)
             {
-                //_error = ex.Message;
-                resultado = "Se produjo un error al registrar||";
-                return resultado;
+                mensaje = ex.ToString();
+                id_producto = 0;
             }
         }
 
