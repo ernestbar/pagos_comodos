@@ -116,7 +116,7 @@
 												<a href="#">
 													<div class="number">1</div>
 													<div class="info">
-														<div class="title">Datos inciales del producto</div>
+														<div class="title">Datos iniciales del producto</div>
 														<div class="desc"></div>
 													</div>
 												</a>
@@ -183,6 +183,106 @@
 						<div class="checkout-footer align-content-center">
 							<asp:Button ID="btnAtras" runat="server" CausesValidation="false" Text="ATRAS" OnClick="btnAtras_Click" class="btn btn-white" />
 							<asp:Button ID="btnAdelante" runat="server" Text="GUARDAR" OnClick="btnAdelante_Click" class="btn btn-dark" />
+						</div>
+						<!-- END checkout-footer -->
+					</form>
+				</div>
+				<!-- END checkout -->
+		</asp:View>
+		<asp:View ID="View3" runat="server">
+			<!-- BEGIN checkout -->
+				<div class="checkout">
+					<form action="checkout_payment.html" method="GET" name="form_shipping" class="form-horizontal">
+						<!-- BEGIN checkout-header -->
+						<div class="checkout-header">
+							<!-- BEGIN row -->
+							<div class="row">
+								<!-- BEGIN col-3 -->
+										<div class="col-lg-6">
+											<div class="step">
+												<a href="#">
+													<div class="number">1</div>
+													<div class="info">
+														<div class="title">Datos iniciales del producto</div>
+														<div class="desc"></div>
+													</div>
+												</a>
+											</div>
+										</div>
+										<!-- END col-3 -->
+								<!-- BEGIN col-3 -->
+										<div class="col-lg-6">
+											<div class="step active">
+												<a href="#">
+													<div class="number">2</div>
+													<div class="info">
+														<div class="title">Descripcion del producto</div>
+														<div class="desc"></div>
+													</div>
+												</a>
+											</div>
+										</div>
+										<!-- END col-3 -->
+							</div>
+							<!-- END row -->
+						</div>
+						<!-- END checkout-header -->
+						<!-- BEGIN checkout-body -->
+					
+							<div class="mb-2 row">
+								<label class="col-form-label col-md-4 text-lg-end">
+								Nombre del producto <span class="text-danger">*</span>
+								</label>
+								<div class="col-md-4">
+									<asp:TextBox ID="TextBox1" class="form-control" runat="server"></asp:TextBox>
+									<asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtNombre" Font-Bold="True"></asp:RequiredFieldValidator>
+								</div>
+							</div>
+							<div class="mb-2 row">
+								<label class="col-form-label col-md-4 text-lg-end">
+								Precio en Bs. <span class="text-danger">*</span>
+								</label>
+								<div class="col-md-4">
+									<asp:TextBox ID="TextBox2" class="form-control" runat="server"></asp:TextBox>
+									<asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtPrecio" Font-Bold="True"></asp:RequiredFieldValidator>
+								</div>
+							</div>
+							<div class="mb-2 row">
+								<label class="col-form-label col-md-4 text-lg-end">
+								Categoria <span class="text-danger">*</span>
+								</label>
+								<div class="col-md-4">
+									<asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="lista_categorias" TypeName="pagos_comodos.Clases.Categorias">
+									</asp:ObjectDataSource>
+									<asp:DropDownList ID="DropDownList1" class="form-select dropdown-brand-list" DataSourceID="odsCategorias" DataTextField="nombre" DataValueField="id_categoria" OnDataBound="ddlCategoria_DataBound" runat="server"></asp:DropDownList>
+									<asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="*" ForeColor="Red" InitialValue="SELECCIONAR" ControlToValidate="ddlCategoria" Font-Bold="True"></asp:RequiredFieldValidator>
+								</div>
+							</div>
+							<div class="mb-2 row">
+								<label class="col-form-label col-md-4 text-lg-end">
+								Imagen principal <span class="text-danger">*</span>
+								</label>
+								<div class="col-md-4">
+									<asp:FileUpload ID="FileUpload1" CssClass="form-control" runat="server" />
+								</div>
+							</div>
+							<div class="mb-2 row">
+								<label class="col-form-label col-md-4 text-lg-end">
+								Resumen de caracteristicas <span class="text-danger">*</span>
+								</label>
+								<div class="col-md-4">
+									<asp:TextBox ID="TextBox3" class="form-control" ValidationGroup="resumen" runat="server"></asp:TextBox>
+									<asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ErrorMessage="*" ForeColor="Red" ValidationGroup="resumen" ControlToValidate="txtResumen" Font-Bold="True"></asp:RequiredFieldValidator>
+									<asp:Button ID="Button1" runat="server" Text="Agregar" ValidationGroup="resumen" OnClick="btnPlus_Click" class="btn btn-blue" />
+									<asp:ListBox ID="ListBox1" class="form-control" runat="server"></asp:ListBox>
+								</div>
+							</div>
+							
+							<hr />
+						<!-- BEGIN checkout-footer -->
+						<div class="checkout-footer align-content-center">
+							<asp:Button ID="Button2" runat="server" CausesValidation="false" Text="ATRAS" OnClick="btnAtras_Click" class="btn btn-white" />
+							<asp:Button ID="Button3" runat="server" Text="GUARDAR" OnClick="btnAdelante_Click" class="btn btn-dark" />
 						</div>
 						<!-- END checkout-footer -->
 					</form>

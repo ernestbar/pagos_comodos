@@ -108,11 +108,19 @@ namespace pagos_comodos
         protected void btnAdelante_Click(object sender, EventArgs e)
         {
             string url_imagen = "";
-            Clases.Productos obj_p = new Clases.Productos("I", 0,long.Parse(ddlCategoria.SelectedValue), txtNombre.Text, true, fuFoto.FileName, 1);
-            obj_p.ABM();
-            lblAviso.Text = obj_p.mensaje;
-            MultiView1.ActiveViewIndex = 0;
-            Repeater1.DataBind();
+            if (lblIdProducto.Text == "")
+            {
+                //Clases.Productos obj_p = new Clases.Productos("I", 0, long.Parse(ddlCategoria.SelectedValue), txtNombre.Text, true, fuFoto.FileName, 1);
+                //obj_p.ABM();
+                //lblAviso.Text = obj_p.mensaje;
+                MultiView1.ActiveViewIndex = 2;
+                Repeater1.DataBind();
+            }
+            else
+            { 
+            }
+            
+            
         }
 
         protected void ddlCategoria_DataBound(object sender, EventArgs e)
