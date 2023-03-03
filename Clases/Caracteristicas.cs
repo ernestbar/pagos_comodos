@@ -73,25 +73,19 @@ namespace pagos_comodos.Clases
         {
             try
             {
-                //DbCommand cmd = db1.GetStoredProcCommand("PR_SEG_GET_MENUS_IND");
-                //db1.AddInParameter(cmd, "PV_COD_MENU", DbType.String, _PB_COD_MENU);
-                //db1.ExecuteNonQuery(cmd);
-                //DataTable dt = new DataTable();
-                //dt = db1.ExecuteDataSet(cmd).Tables[0];
-                //if (dt.Rows.Count > 0)
-                //{
-                //    foreach (DataRow dr in dt.Rows)
-                //    {
-                //        if (string.IsNullOrEmpty(dr["COD_MENU_PADRE"].ToString()))
-                //        { _PB_COD_MENU_PADRE = ""; }
-                //        else
-                //        { _PB_COD_MENU_PADRE = (string)dr["COD_MENU_PADRE"]; }
-                //        _PV_DESCRIPCIONMEN = (string)dr["DESCRIPCION"];
-                //        _PV_DETALLE = (string)dr["DETALLE"];
-                //    }
-
-                //}
-
+                DbCommand cmd = db1.GetStoredProcCommand("caracteristicas_recuperar_datos");
+                db1.AddInParameter(cmd, "id_caracteristicas", DbType.Int32, id_caracteristicas);
+                db1.AddOutParameter(cmd, "id_tipocaracteristica", DbType.Int32, 250);
+                db1.AddOutParameter(cmd, "titulo", DbType.String, 250);
+                db1.AddOutParameter(cmd, "descripcion", DbType.String, 250);
+                db1.AddOutParameter(cmd, "img1", DbType.String, 250);
+                db1.AddOutParameter(cmd, "activo", DbType.Boolean, 1);
+                db1.ExecuteNonQuery(cmd);
+                id_tipocaracteristica = (Int32)db1.GetParameterValue(cmd, "id_tipocaracteristica");
+                titulo = (string)db1.GetParameterValue(cmd, "titulo");
+                descripcion = (string)db1.GetParameterValue(cmd, "descripcion");
+                img1 = (string)db1.GetParameterValue(cmd, "img1");
+                activo = (bool)db1.GetParameterValue(cmd, "activo");
             }
             catch { }
         }
