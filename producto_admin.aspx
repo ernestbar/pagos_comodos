@@ -348,7 +348,7 @@
 								</label>
 								<div class="col-md-4">
 									<asp:TextBox ID="txtTituloDesc" class="form-control" runat="server"></asp:TextBox>
-									<asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtTituloDesc" Font-Bold="True"></asp:RequiredFieldValidator>
+									<asp:RequiredFieldValidator ID="RequiredFieldValidator6" ValidationGroup="gDesc" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtTituloDesc" Font-Bold="True"></asp:RequiredFieldValidator>
 								</div>
 							</div>
 							<div class="mb-2 row">
@@ -357,7 +357,7 @@
 								</label>
 								<div class="col-md-4">
 									<asp:TextBox ID="txtDescripcionDesc" class="form-control" TextMode="MultiLine" runat="server"></asp:TextBox>
-									<asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtDescripcionDesc" Font-Bold="True"></asp:RequiredFieldValidator>
+									<asp:RequiredFieldValidator ID="RequiredFieldValidator7" ValidationGroup="gDesc" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtDescripcionDesc" Font-Bold="True"></asp:RequiredFieldValidator>
 								</div>
 							</div>
 							<div class="mb-2 row">
@@ -366,12 +366,13 @@
 								</label>
 								<div class="col-md-4">
 									<asp:FileUpload ID="fuImagenDesc" CssClass="form-control" runat="server" />
+									<asp:RequiredFieldValidator ID="RequiredFieldValidator5" ValidationGroup="gDesc" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="fuImagenDesc" Font-Bold="True"></asp:RequiredFieldValidator>
 								</div>
 							</div>
 
 						<div class="mb-2 row">
 								<label class="col-form-label col-md-4 text-lg-end">
-								<span class="text-danger">*</span>
+								<span class="text-danger"></span>
 								</label>
 								<div class="col-md-4">
 									<asp:Button ID="btnAgragarDesc" runat="server" Text="Agregar" ValidationGroup="resumen" OnClick="btnAgragarDesc_Click" class="btn btn-blue" />
@@ -410,7 +411,7 @@
 																	<td class="cart-total"><asp:Image ID="Image1" ImageUrl='<%# Eval("img1") %>' Height="50px" runat="server" /></td>
 																	<td class="cart-total"><asp:Label ID="lblEstado" runat="server" Text='<%# Eval("activo") %>'></asp:Label></td>
 																	<td class="cart-total">
-																		<asp:Button ID="btnEditarDesc" runat="server" Text="Editar" CommandArgument='<%# Eval("id_caracteristicas") %>' OnClick="btnEditarDesc_Click" class="btn btn-gray btn-sm" />
+																		<asp:Button ID="btnEditarDesc" runat="server" Text="Editar" CommandArgument='<%# Eval("id_caracteristicas") %>'  OnClick="btnEditarDesc_Click" class="btn btn-gray btn-sm" />
 																		<asp:Button ID="btnEliminarDesc" runat="server" Text="Activar/Desactivar" CommandArgument='<%# Eval("id_caracteristicas") +"|"+ Eval("activo")  %>' OnClick="btnEliminarDesc_Click" class="btn btn-gray btn-sm" />
 																	</td>
 																</tr>

@@ -172,6 +172,8 @@ namespace pagos_comodos
             Button obj = (Button)sender;
             id = obj.CommandArgument.ToString();
             lblIdProducto.Text = id;
+            odsResumen.FilterExpression = "titulo='Checklist'";
+            Repeater2.DataBind();
             MultiView1.ActiveViewIndex = 2;
         }
 
@@ -224,6 +226,7 @@ namespace pagos_comodos
                     lblAviso.Text = car.mensaje;
                 }
                 lblIdCaracteristicas.Text = "";
+                odsResumen.FilterExpression = "titulo='Checklist'";
                 Repeater2.DataBind();
             }
             catch (Exception ex)
@@ -249,7 +252,27 @@ namespace pagos_comodos
 
         protected void btnEditarDesc_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                lblAviso.Text = "";
+                string id = "";
+                Button obj = (Button)sender;
+                id = obj.CommandArgument.ToString();
+                lblIdCaracteristicas.Text = id;
+                Clases.Caracteristicas car = new Clases.Caracteristicas(int.Parse(lblIdCaracteristicas.Text));
+                txtTituloDesc.Text = car.titulo;
+                txtDescripcionDesc.Text = car.descripcion;
+                txtResumen.Focus();
+            }
+            catch (Exception ex)
+            {
+                string nombre_archivo = "error_producto_" + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString() + ".txt";
+                string directorio2 = Server.MapPath("~/Logs");
+                StreamWriter writer5 = new StreamWriter(directorio2 + "\\" + nombre_archivo, true, Encoding.Unicode);
+                writer5.WriteLine(ex.ToString());
+                writer5.Close();
+                lblAviso.Text = "Tenemos algunos problemas consulte con el administrador.";
+            }
         }
 
         protected void btnEliminarDesc_Click(object sender, EventArgs e)
@@ -266,13 +289,13 @@ namespace pagos_comodos
                 estado = datos[1];
                 if (bool.Parse(estado) == true)
                 {
-                    Clases.Caracteristicas car = new Clases.Caracteristicas(long.Parse(lblIdCaracteristicas.Text), 1, "", txtResumen.Text, "", true, long.Parse(lblIdProducto.Text));
+                    Clases.Caracteristicas car = new Clases.Caracteristicas(long.Parse(lblIdCaracteristicas.Text), 1,txtTituloDesc.Text,txtDescripcionDesc.Text, fuFoto.FileName, true, long.Parse(lblIdProducto.Text));
                     car.ABM("D");
                     lblAviso.Text = car.mensaje;
                 }
                 else
                 {
-                    Clases.Caracteristicas car = new Clases.Caracteristicas(long.Parse(lblIdCaracteristicas.Text), 1, "", txtResumen.Text, "", true, long.Parse(lblIdProducto.Text));
+                    Clases.Caracteristicas car = new Clases.Caracteristicas(long.Parse(lblIdCaracteristicas.Text), 1, txtTituloDesc.Text, txtDescripcionDesc.Text, fuFoto.FileName, true, long.Parse(lblIdProducto.Text));
                     car.ABM("A");
                     lblAviso.Text = car.mensaje;
                 }
@@ -294,13 +317,13 @@ namespace pagos_comodos
         {
             if (lblIdCaracteristicas.Text == "")
             {
-                Clases.Caracteristicas car = new Clases.Caracteristicas(0, 5, "Checklist", txtResumen.Text, fuImagenDesc.FileName, true, int.Parse(lblIdProducto.Text));
+                Clases.Caracteristicas car = new Clases.Caracteristicas(0, 1,  txtTituloDesc.Text,txtDescripcionDesc.Text, fuImagenDesc.FileName, true, int.Parse(lblIdProducto.Text));
                 car.ABM("I");
                 lblAviso.Text = car.mensaje;
             }
             else
             {
-                Clases.Caracteristicas car = new Clases.Caracteristicas(int.Parse(lblIdCaracteristicas.Text), 5, "Checklist", txtResumen.Text, fuImagenDesc.FileName, true, int.Parse(lblIdProducto.Text));
+                Clases.Caracteristicas car = new Clases.Caracteristicas(int.Parse(lblIdCaracteristicas.Text), 1,txtTituloDesc.Text, txtDescripcionDesc.Text, fuImagenDesc.FileName, true, int.Parse(lblIdProducto.Text));
                 car.ABM("U");
                 lblAviso.Text = car.mensaje;
             }

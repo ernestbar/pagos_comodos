@@ -101,9 +101,19 @@ namespace pagos_comodos.Clases
                 db1.AddInParameter(cmd, "tipo_operacion", DbType.String, tipo_operacion_);
                 db1.AddInParameter(cmd, "id_caracteristica", DbType.Int64, id_caracteristicas);
                 db1.AddInParameter(cmd, "id_tipocaracteristica", DbType.Int32, id_tipocaracteristica);
-                db1.AddInParameter(cmd, "titulo", DbType.String, titulo);
-                db1.AddInParameter(cmd, "descripcion", DbType.String, descripcion);
-                db1.AddInParameter(cmd, "img1", DbType.String, img1);
+                if(titulo=="")
+                    db1.AddInParameter(cmd, "titulo", DbType.String, null);
+                else
+                    db1.AddInParameter(cmd, "titulo", DbType.String, titulo);
+                if (descripcion == "")
+                    db1.AddInParameter(cmd, "descripcion", DbType.String, null);
+                else
+                    db1.AddInParameter(cmd, "descripcion", DbType.String, descripcion);
+                if (img1 == "")
+                    db1.AddInParameter(cmd, "img1", DbType.String, null);
+                else
+                    db1.AddInParameter(cmd, "img1", DbType.String, img1);
+
                 db1.AddInParameter(cmd, "activo", DbType.Boolean, activo);
                 db1.AddInParameter(cmd, "id_producto", DbType.Int64, id_producto);
                 db1.AddOutParameter(cmd, "mensaje", DbType.String, 30);
