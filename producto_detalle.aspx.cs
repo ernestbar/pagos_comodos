@@ -26,19 +26,19 @@ namespace pagos_comodos
                 lblIdCategoria.Text = Request.QueryString["cat"].ToString();
                 ////carga el titulo
                 DataTable dt_t = new DataTable();
-                dt_t= Clases.Caracteristicas.lista_caracteristica_producto(long.Parse(lblIdProducto.Text), 5);
+                dt_t= Clases.Caracteristicas.lista_caracteristica_producto(long.Parse(lblIdProducto.Text), 5,long.Parse(lblIdUsuario.Text));
                 RepeaterTitulo.DataSource = dt_t.Select("titulo='Titulo'");
                 RepeaterTitulo.DataBind();
 
                 ////carga el precio
                 DataTable dt_p = new DataTable();
-                dt_p = Clases.Caracteristicas.lista_caracteristica_producto(long.Parse(lblIdProducto.Text), 5);
+                dt_p = Clases.Caracteristicas.lista_caracteristica_producto(long.Parse(lblIdProducto.Text), 5, long.Parse(lblIdUsuario.Text));
                 RepeaterPrecio.DataSource = dt_p.Select("titulo='Precio'");
                 RepeaterPrecio.DataBind();
 
                 ////carga el precio
                 DataTable dt_c = new DataTable();
-                dt_c = Clases.Caracteristicas.lista_caracteristica_producto(long.Parse(lblIdProducto.Text), 5);
+                dt_c = Clases.Caracteristicas.lista_caracteristica_producto(long.Parse(lblIdProducto.Text), 5, long.Parse(lblIdUsuario.Text));
                 RepeaterCheklist.DataSource = dt_c.Select("titulo='Checklist'");
                 RepeaterCheklist.DataBind();
                 SetCaptchaText();

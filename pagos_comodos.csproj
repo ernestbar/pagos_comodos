@@ -4129,6 +4129,7 @@
     <Content Include="producto_admin.aspx" />
     <Content Include="producto_detalle.aspx" />
     <Content Include="requisitos.aspx" />
+    <Content Include="slider_admin.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -4220,6 +4221,13 @@
     </Compile>
     <Compile Include="requisitos.aspx.designer.cs">
       <DependentUpon>requisitos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="slider_admin.aspx.cs">
+      <DependentUpon>slider_admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="slider_admin.aspx.designer.cs">
+      <DependentUpon>slider_admin.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -4407,6 +4415,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Imagenes\slider\" />
     <Folder Include="Logs\" />
   </ItemGroup>
   <PropertyGroup>

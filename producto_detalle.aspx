@@ -30,6 +30,7 @@
 										<SelectParameters>
 											<asp:ControlParameter ControlID="lblIdProducto" Name="id_producto_" Type="String" />
 											<asp:Parameter Name="id_tipocaracteristicas_" DefaultValue="2"  />
+											<asp:ControlParameter ControlID="lblIdUsuario" Name="id_usuario_" Type="String" />
 										</SelectParameters>
 									</asp:ObjectDataSource>
 									<asp:Repeater ID="RepeaterImg" DataSourceID="odsCaracteristicasImg" runat="server">
@@ -133,6 +134,7 @@
 										<SelectParameters>
 											<asp:ControlParameter ControlID="lblIdProducto" Name="id_producto_" Type="String" />
 											<asp:Parameter Name="id_tipocaracteristicas_" DefaultValue="1"  />
+											<asp:ControlParameter ControlID="lblIdUsuario" Name="id_usuario_" Type="String" />
 										</SelectParameters>
 									</asp:ObjectDataSource>
 									<asp:Repeater ID="Repeater1" DataSourceID="odsCaracteristicasCar" runat="server">
@@ -171,6 +173,7 @@
 												<SelectParameters>
 													<asp:ControlParameter ControlID="lblIdProducto" Name="id_producto_" Type="String" />
 													<asp:Parameter Name="id_tipocaracteristicas_" DefaultValue="3"  />
+													<asp:ControlParameter ControlID="lblIdUsuario" Name="id_usuario_" Type="String" />
 												</SelectParameters>
 											</asp:ObjectDataSource>
 											<asp:Repeater ID="Repeater2" DataSourceID="odsCaracteristicaAdi" runat="server">
@@ -200,6 +203,7 @@
 												<SelectParameters>
 													<asp:ControlParameter ControlID="lblIdProducto" Name="id_producto_" Type="String" />
 													<asp:Parameter Name="id_tipocaracteristicas_" DefaultValue="4"  />
+													<asp:ControlParameter ControlID="lblIdUsuario" Name="id_usuario_" Type="String" />
 												</SelectParameters>
 											</asp:ObjectDataSource>
 											<asp:Repeater ID="Repeater3" DataSourceID="odsCaracteristicasRat" runat="server">

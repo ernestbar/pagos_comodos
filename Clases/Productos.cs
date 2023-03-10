@@ -76,7 +76,22 @@ namespace pagos_comodos.Clases
 
         }
 
+        public static DataTable lista_productos_recientes()
+        {
+            try
+            {
+                DbCommand cmd = db1.GetStoredProcCommand("lista_productos_recientes");
+                cmd.CommandTimeout = int.Parse(ConfigurationManager.AppSettings["CommandTimeout"]);
+                return db1.ExecuteDataSet(cmd).Tables[0];
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
+                DataTable dt = new DataTable();
+                return dt;
+            }
 
+        }
         #endregion
 
         #region Métodos que requieren constructor

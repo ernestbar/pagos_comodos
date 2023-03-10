@@ -34,7 +34,7 @@ namespace pagos_comodos
                 txtPrecio.Text = pro.precio;
                 ddlCategoria.SelectedValue = pro.id_categoria.ToString();
                 DataTable dt = new DataTable();
-                dt = Clases.Caracteristicas.lista_caracteristica_producto(int.Parse(id), 5);
+                dt = Clases.Caracteristicas.lista_caracteristica_producto(int.Parse(id), 5, long.Parse(lblIdUsuario.Text));
                 if (dt.Rows.Count > 0)
                 {
                     foreach (DataRow dr in dt.Rows)
@@ -336,7 +336,212 @@ namespace pagos_comodos
 
         protected void btnLimpiarDesc_Click(object sender, EventArgs e)
         {
+            txtTituloDesc.Text = "";
+            txtDescripcionDesc.Text = "";
+            fuImagenDesc.Dispose();
+            lblIdCaracteristicas.Text = "";
+        }
 
+        protected void btnAgregarInfoAdd_Click(object sender, EventArgs e)
+        {
+            if (lblIdCaracteristicas.Text == "")
+            {
+                Clases.Caracteristicas car = new Clases.Caracteristicas(0, 3, txtTituloInfoAdd.Text, txtDescInfoAdd.Text, "", true, int.Parse(lblIdProducto.Text));
+                car.ABM("I");
+                lblAviso.Text = car.mensaje;
+            }
+            else
+            {
+                Clases.Caracteristicas car = new Clases.Caracteristicas(int.Parse(lblIdCaracteristicas.Text), 3, txtTituloInfoAdd.Text, txtDescInfoAdd.Text, "", true, int.Parse(lblIdProducto.Text));
+                car.ABM("U");
+                lblAviso.Text = car.mensaje;
+            }
+
+            lblIdCaracteristicas.Text = "";
+            txtTituloInfoAdd.Text = "";
+            txtDescInfoAdd.Text = "";
+            Repeater4.DataBind();
+        }
+
+        protected void btnLimpiarInfoAdd_Click(object sender, EventArgs e)
+        {
+            txtTituloInfoAdd.Text = "";
+            txtDescInfoAdd.Text = "";
+            lblIdCaracteristicas.Text = "";
+        }
+
+        protected void btnEditarInfoAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                lblAviso.Text = "";
+                string id = "";
+                Button obj = (Button)sender;
+                id = obj.CommandArgument.ToString();
+                lblIdCaracteristicas.Text = id;
+                Clases.Caracteristicas car = new Clases.Caracteristicas(int.Parse(lblIdCaracteristicas.Text));
+                txtTituloInfoAdd.Text = car.titulo;
+                txtDescInfoAdd.Text = car.descripcion;
+                txtTituloInfoAdd.Focus();
+            }
+            catch (Exception ex)
+            {
+                string nombre_archivo = "error_producto_" + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString() + ".txt";
+                string directorio2 = Server.MapPath("~/Logs");
+                StreamWriter writer5 = new StreamWriter(directorio2 + "\\" + nombre_archivo, true, Encoding.Unicode);
+                writer5.WriteLine(ex.ToString());
+                writer5.Close();
+                lblAviso.Text = "Tenemos algunos problemas consulte con el administrador.";
+            }
+        }
+
+        protected void btnEliminaInfoAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                lblAviso.Text = "";
+                string id = "";
+                Button obj = (Button)sender;
+                id = obj.CommandArgument.ToString();
+                string[] datos = id.Split('|');
+                lblIdCaracteristicas.Text = datos[0];
+                string estado = "";
+                estado = datos[1];
+                if (bool.Parse(estado) == true)
+                {
+                    Clases.Caracteristicas car = new Clases.Caracteristicas(long.Parse(lblIdCaracteristicas.Text), 3, txtTituloInfoAdd.Text, txtDescInfoAdd.Text, "", true, long.Parse(lblIdProducto.Text));
+                    car.ABM("D");
+                    lblAviso.Text = car.mensaje;
+                }
+                else
+                {
+                    Clases.Caracteristicas car = new Clases.Caracteristicas(long.Parse(lblIdCaracteristicas.Text), 3, txtTituloInfoAdd.Text, txtDescInfoAdd.Text, "", true, long.Parse(lblIdProducto.Text));
+                    car.ABM("A");
+                    lblAviso.Text = car.mensaje;
+                }
+                lblIdCaracteristicas.Text = "";
+                Repeater4.DataBind();
+            }
+            catch (Exception ex)
+            {
+                string nombre_archivo = "error_producto_" + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString() + ".txt";
+                string directorio2 = Server.MapPath("~/Logs");
+                StreamWriter writer5 = new StreamWriter(directorio2 + "\\" + nombre_archivo, true, Encoding.Unicode);
+                writer5.WriteLine(ex.ToString());
+                writer5.Close();
+                lblAviso.Text = "Tenemos algunos problemas consulte con el administrador.";
+            }
+        }
+
+        protected void btnInformacion_Click(object sender, EventArgs e)
+        {
+            lblAviso.Text = "";
+            string id = "";
+            Button obj = (Button)sender;
+            id = obj.CommandArgument.ToString();
+            lblIdProducto.Text = id;
+            MultiView1.ActiveViewIndex = 4;
+        }
+
+        protected void btnAgrgarRating_Click(object sender, EventArgs e)
+        {
+            if (lblIdCaracteristicas.Text == "")
+            {
+                Clases.Caracteristicas car = new Clases.Caracteristicas(0, 4, txtTituloRating.Text, txtDescRating.Text, "", true, int.Parse(lblIdProducto.Text));
+                car.ABM("I");
+                lblAviso.Text = car.mensaje;
+            }
+            else
+            {
+                Clases.Caracteristicas car = new Clases.Caracteristicas(int.Parse(lblIdCaracteristicas.Text), 4, txtTituloRating.Text, txtDescRating.Text, "", true, int.Parse(lblIdProducto.Text));
+                car.ABM("U");
+                lblAviso.Text = car.mensaje;
+            }
+
+            lblIdCaracteristicas.Text = "";
+            txtTituloRating.Text = "";
+            txtDescRating.Text = "";
+            Repeater5.DataBind();
+        }
+
+        protected void ButtbtnLimpiarRatingon4_Click(object sender, EventArgs e)
+        {
+            txtTituloRating.Text = "";
+            txtDescRating.Text = "";
+            lblIdCaracteristicas.Text = "";
+        }
+
+        protected void btnEditarRating_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                lblAviso.Text = "";
+                string id = "";
+                Button obj = (Button)sender;
+                id = obj.CommandArgument.ToString();
+                lblIdCaracteristicas.Text = id;
+                Clases.Caracteristicas car = new Clases.Caracteristicas(int.Parse(lblIdCaracteristicas.Text));
+                txtTituloRating.Text = car.titulo;
+                txtDescRating.Text = car.descripcion;
+                txtTituloRating.Focus();
+            }
+            catch (Exception ex)
+            {
+                string nombre_archivo = "error_producto_" + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString() + ".txt";
+                string directorio2 = Server.MapPath("~/Logs");
+                StreamWriter writer5 = new StreamWriter(directorio2 + "\\" + nombre_archivo, true, Encoding.Unicode);
+                writer5.WriteLine(ex.ToString());
+                writer5.Close();
+                lblAviso.Text = "Tenemos algunos problemas consulte con el administrador.";
+            }
+        }
+
+        protected void btnEliminarRating_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                lblAviso.Text = "";
+                string id = "";
+                Button obj = (Button)sender;
+                id = obj.CommandArgument.ToString();
+                string[] datos = id.Split('|');
+                lblIdCaracteristicas.Text = datos[0];
+                string estado = "";
+                estado = datos[1];
+                if (bool.Parse(estado) == true)
+                {
+                    Clases.Caracteristicas car = new Clases.Caracteristicas(long.Parse(lblIdCaracteristicas.Text), 4, txtTituloInfoAdd.Text, txtDescInfoAdd.Text, "", true, long.Parse(lblIdProducto.Text));
+                    car.ABM("D");
+                    lblAviso.Text = car.mensaje;
+                }
+                else
+                {
+                    Clases.Caracteristicas car = new Clases.Caracteristicas(long.Parse(lblIdCaracteristicas.Text), 4, txtTituloInfoAdd.Text, txtDescInfoAdd.Text, "", true, long.Parse(lblIdProducto.Text));
+                    car.ABM("A");
+                    lblAviso.Text = car.mensaje;
+                }
+                lblIdCaracteristicas.Text = "";
+                Repeater5.DataBind();
+            }
+            catch (Exception ex)
+            {
+                string nombre_archivo = "error_producto_" + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString() + ".txt";
+                string directorio2 = Server.MapPath("~/Logs");
+                StreamWriter writer5 = new StreamWriter(directorio2 + "\\" + nombre_archivo, true, Encoding.Unicode);
+                writer5.WriteLine(ex.ToString());
+                writer5.Close();
+                lblAviso.Text = "Tenemos algunos problemas consulte con el administrador.";
+            }
+        }
+
+        protected void btnEval_Click(object sender, EventArgs e)
+        {
+            lblAviso.Text = "";
+            string id = "";
+            Button obj = (Button)sender;
+            id = obj.CommandArgument.ToString();
+            lblIdProducto.Text = id;
+            MultiView1.ActiveViewIndex = 5;
         }
     }
 }
